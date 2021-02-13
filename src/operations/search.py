@@ -12,7 +12,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-import regExpr
+import operations.regExpr as regExpr
 import utils
 import wx
 
@@ -31,7 +31,7 @@ class Panel(wx.Panel):
     Panel to hold searching widgets, and return search parameters
     to parent panel.
     """
-    
+
     def __init_sizer(self):
         mainSizer = self.mainSizer = wx.StaticBoxSizer(self.staticBox1, wx.VERTICAL)
         #text
@@ -39,17 +39,17 @@ class Panel(wx.Panel):
         textSizer = self.textSizer = wx.BoxSizer(wx.HORIZONTAL)
         textSizer.Add(self.repl_find, 75, wx.RIGHT, 10)
         textSizer.Add(self.repl_case, 0, wx.ALIGN_CENTER)
-        textSizer.Add((-1, -1), 1)
+        textSizer.Add(wx.Size(-1, -1), 1)
         mainSizer.Add(textSizer, 0, wx.EXPAND)
         #in between
         btwSizer = wx.BoxSizer(wx.HORIZONTAL)
         btwSizer.Add(self.between, 0, wx.ALIGN_CENTRE | wx.RIGHT, 5)
         btwSizer.Add(self.staticText6, 0, wx.ALIGN_CENTRE)
         btwSizer.Add(self.BTWtextMatch1, 35, wx.LEFT, 2)
-        btwSizer.Add((-1, -1), 1)
+        btwSizer.Add(wx.Size(-1, -1), 1)
         btwSizer.Add(self.staticText7, 0, wx.ALIGN_CENTRE | wx.LEFT, 5)
         btwSizer.Add(self.BTWtextMatch2, 35, wx.LEFT, 2)
-        btwSizer.Add((-1, -1), 1)
+        btwSizer.Add(wx.Size(-1, -1), 1)
         mainSizer.Add(btwSizer, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 3)
         #regular expression
         mainSizer.Add(self.regExpPanel, 0, wx.EXPAND | wx.LEFT, 10)
@@ -61,6 +61,8 @@ class Panel(wx.Panel):
         posSizer.Add(self.staticText2, 0, wx.ALIGN_CENTER | wx.RIGHT, 4)
         posSizer.Add(self.repl_len, 0, wx.ALIGN_CENTER | wx.RIGHT, 20)
         mainSizer.Add(posSizer, 0, wx.EXPAND | wx.TOP, 10)
+        #mainSizer.Add(posSizer, 0, wx.EXPAND | wx.BOTTOM, 3)
+        mainSizer.Add(wx.Size(-1, 5), 0, wx.EXPAND, 5)
 
         self.SetSizerAndFit(mainSizer)
 
@@ -92,7 +94,7 @@ class Panel(wx.Panel):
                                      label=_(u"case sensitive"), name=u'repl_case', parent=self,
                                      style=0)
         self.repl_case.SetValue(False)
-        self.repl_case.SetToolTipString(_(u"Differentiate between upper and lower case"))
+        self.repl_case.SetToolTip(_(u"Differentiate between upper and lower case"))
         self.repl_case.Bind(wx.EVT_CHECKBOX, self.define_text)
 
         # in between
@@ -148,7 +150,7 @@ class Panel(wx.Panel):
         self.staticText1.Enable(False)
 
         self.repl_from = wx.SpinCtrl(id=wxID_PANELREPL_FROM, initial=0, max=255,
-                                     min=-255, name=u'repl_from', parent=self, size=wx.Size(65, -1),
+                                     min=-255, name=u'repl_from', parent=self, size=wx.DefaultSize,
                                      style=wx.SP_ARROW_KEYS | wx.TE_PROCESS_ENTER, value='0')
         self.repl_from.SetValue(0)
         self.repl_from.Enable(False)
@@ -161,7 +163,7 @@ class Panel(wx.Panel):
         self.staticText2.Enable(False)
 
         self.repl_len = wx.SpinCtrl(id=wxID_PANELREPL_LEN, initial=1, max=255,
-                                    min=1, name=u'repl_len', parent=self, size=wx.Size(65, -1),
+                                    min=1, name=u'repl_len', parent=self, size=wx.DefaultSize,
                                     style=wx.SP_ARROW_KEYS | wx.TE_PROCESS_ENTER, value='1')
         self.repl_len.Enable(False)
         self.repl_len.Bind(wx.EVT_TEXT_ENTER, main.show_preview,

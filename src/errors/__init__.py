@@ -13,7 +13,7 @@
 # GNU General Public License for more details.
 
 import classes
-import wxErrorsView
+from . wxErrorsView import ErrorList
 import app
 
 
@@ -36,7 +36,7 @@ class Parameters(classes.Parameters):
 class Core():
     """Error core."""
     def __init__(self, parent, MainWindow):
-        app.debug_print("loading errors core");
+        app.debug_print("loading errors core")
         global main
         main = MainWindow
         self.view = wxErrorsView.Panel(self, parent, main)

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2006-2015 ianaré sévi <ianare@gmail.com>
@@ -28,23 +28,28 @@ collections, webmasters, programmers, legal and clerical, etc.
 This is what you should run to start the program.
 """
 
-from __future__ import print_function
+#from __future__ import print_function
 import sys
 import os
+import inspect
 import platform
 from getopt import GetoptError, getopt
 import app
 
 
-syspath = sys.path[0]
+#syspath = sys.path[0]
 
 if not hasattr(sys, "frozen"):
     try:
-        import wxversion
+        import wx
     except ImportError:
         print("\nwxPython required!\n")
         sys.exit()
 
+instwxversion = list(map(int,wx.__version__.split(".")))[0]
+if instwxversion < 4:
+    print("\nwxPython Version 4 or above required!\n")
+    sys.exit()
 
 def usage():
     """
@@ -73,7 +78,6 @@ def usage():
     print("                    en_US")
     print("                    fr")
     print("                    es")
-    print("-w=, --wxversion  Specify wxPython Version - use at your own risk!")
     print()
     print("If no other options are given, you may specify a path to open:")
     print("$ metamorphose2 /srv/samba/Windows Likes Spaces")
@@ -107,8 +111,6 @@ def get_options():
         'configFilePath': False,
     }
 
-    wx_version = ('2.8', '3.0')
-
     if sys.argv[1:] != [] and opts == []:
         options['path'] = ''
         for chunk in sys.argv[1:]:
@@ -140,13 +142,12 @@ def get_options():
                 app.autoModeLevel = int(level)
         elif o in ("-l", "--language"):
             app.language = strip_leading(a)
-        elif not hasattr(sys, "frozen") and o in ("-w", "--wxversion"):
-            wx_version = strip_leading(a)
 
-    return wx_version, options
+    return options
 
 
-def main(wx_version, cli_options):
+def main(cli_options):
+
     if platform.system() == 'Linux':
         try:
             # to fix some KDE display issues:
@@ -154,21 +155,6 @@ def main(wx_version, cli_options):
             del os.environ['GTK2_RC_FILES']
         except (ValueError, KeyError):
             pass
-
-    if not hasattr(sys, "frozen"):
-        try:
-            wxversion.select(wx_version)
-        except wxversion.VersionError:
-            print("\nFailed to load wxPython version %s!\n" % wx_version)
-            sys.exit()
-
-    import wx
-    if 'unicode' not in wx.PlatformInfo:
-        print("\nInstalled version: %s\nYou need a unicode build of wxPython to run Metamorphose 2.\n"
-              % wxversion.getInstalled())
-
-    # wxversion changes path
-    sys.path[0] = syspath
 
     import MainWindow
 
@@ -184,7 +170,9 @@ def main(wx_version, cli_options):
 
 
 if __name__ == '__main__':
-    wx_version, cli_options = get_options()
-    main(wx_version, cli_options)
+    currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    sys.path.insert(0, currentdir)
 
+    cli_options = get_options()
+    main(cli_options)
 

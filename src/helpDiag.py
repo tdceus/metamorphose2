@@ -51,7 +51,7 @@ class Dialog(wx.Dialog):
                            title=_(u"Help"))
         self.SetMinSize(wx.Size(350, 200))
         self.SetClientSize(wx.Size(600, 570))
-        self.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL, wx.NORMAL))
+        self.SetFont(wx.Font(9, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
         self.SetIcon(wx.Icon(utils.icon_path(u'help.ico'), wx.BITMAP_TYPE_ICO))
 
         self.notebook1 = wx.Notebook(id=wxID_HELPNOTEBOOK1, name=u'notebook1',

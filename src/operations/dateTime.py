@@ -16,7 +16,7 @@ import sys
 
 import app
 import wx
-import wx.calendar
+import wx.adv
 import wx.lib.masked.timectrl
 
 [wxID_PANEL, wxID_PANELCAL, wxID_PANELDATESEPERATOR,
@@ -71,6 +71,7 @@ class Panel(wx.Panel):
         timeBox = self.timeBox = wx.StaticBoxSizer(self.staticBox2,
                                                    wx.HORIZONTAL)
         timeBox.Add(timeStuff, 0, wx.BOTTOM | wx.TOP, 3)
+        timeBox.Add(5, 0, 0)
 
         midSection = wx.BoxSizer(wx.HORIZONTAL)
         midSection.Add(dateBox, 0, wx.LEFT, 8)
@@ -103,10 +104,11 @@ class Panel(wx.Panel):
                                        label=_(u"Time Settings:"), name=u'staticBox2', parent=self,
                                        style=0)
 
-        self.cal = wx.calendar.CalendarCtrl(date=wx.DateTime.Now(),
+        self.cal = wx.adv.CalendarCtrl(date=wx.DateTime.Now(),
                                             id=wxID_PANELCAL, name=u'cal', parent=self,
-                                            style=wx.calendar.CAL_SHOW_SURROUNDING_WEEKS | wx.calendar.CAL_MONDAY_FIRST | wx.calendar.CAL_SHOW_HOLIDAYS)
-        self.cal.Bind(wx.calendar.EVT_CALENDAR_SEL_CHANGED, self._test_date,
+                                            style=wx.adv.CAL_SHOW_SURROUNDING_WEEKS | wx.adv.CAL_MONDAY_FIRST |
+                                                wx.adv.CAL_SHOW_HOLIDAYS)
+        self.cal.Bind(wx.adv.EVT_CALENDAR_SEL_CHANGED, self._test_date,
                       id=wxID_PANELCAL)
 
         self.date_format = wx.ComboBox(choices=[_(u"MM-DD-YYYY"),
@@ -115,7 +117,7 @@ class Panel(wx.Panel):
                                        _(u"YY"), _(u"YYYY")], id=wxID_PANELDATE_FORMAT,
                                        name=u'date_format', parent=self, style=0, value='')
         self.date_format.SetSelection(0)
-        self.date_format.SetToolTipString(_(u"Use menu or enter text"))
+        self.date_format.SetToolTip(_(u"Use menu or enter text"))
         self.date_format.Bind(wx.EVT_TEXT, self._test_date,
                               id=wxID_PANELDATE_FORMAT)
 
@@ -124,7 +126,7 @@ class Panel(wx.Panel):
                                        _(u"HHhMMmSSs"), _(u"24HHhMMmSSs"), ], id=wxID_PANELTIME_FORMAT,
                                        name=u'time_format', parent=self, style=0)
         self.time_format.SetSelection(2)
-        self.time_format.SetToolTipString(_(u"Use menu or enter text"))
+        self.time_format.SetToolTip(_(u"Use menu or enter text"))
         self.time_format.Bind(wx.EVT_TEXT, self._test_time,
                               id=wxID_PANELTIME_FORMAT)
 
@@ -164,16 +166,16 @@ class Panel(wx.Panel):
         self.timeSeperator.Bind(wx.EVT_TEXT, self._test_time,
                                 id=wxID_PANELTIMESEPERATOR)
 
-        self.spin1 = wx.SpinButton(id=wxID_PANELSPIN1, name=u'spin1',
+        self.spin1 = wx.SpinButton(id=wxID_PANELSPIN1, name=u'spin1', size=wx.DefaultSize,
                                    parent=self, style=wx.SP_VERTICAL)
-        self.spin1.SetToolTipString(_(u"Adjust Time"))
+        self.spin1.SetToolTip(_(u"Adjust Time"))
         self.spin1.Bind(wx.EVT_SPIN, self._test_time, id=wxID_PANELSPIN1)
 
         self.time = wx.lib.masked.timectrl.TimeCtrl(display_seconds=True,
                                                     fmt24hr=False, id=wxID_PANELTIME, name=u'time',
-                                                    oob_color=wx.NamedColour(u'Yellow'), parent=self,
+                                                    oob_color=wx.Colour(u'Yellow'), parent=self,
                                                     spinButton=self.spin1, style=wx.TE_PROCESS_TAB,
-                                                    useFixedWidthFont=True, value=wx.DateTime.Now())
+                                                    useFixedWidthFont=False, value=wx.DateTime.Now())
 
         self.setTimeNow = wx.Button(id=wxID_PANELSETTIMENOW,
                                     label=_(u"Set to now"), name=u'setTimeNow', parent=self,
@@ -184,12 +186,12 @@ class Panel(wx.Panel):
         self.staticText5 = wx.StaticText(id=wxID_PANELSTATICTEXT5,
                                          label=_(u"Date Preview:"), name=u'staticText5', parent=self,
                                          style=0)
-        self.staticText5.SetFont(wx.Font(fontSize + 1, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+        self.staticText5.SetFont(wx.Font(fontSize + 1, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD))
 
         self.staticText6 = wx.StaticText(id=wxID_PANELSTATICTEXT6,
                                          label=_(u"Time Preview:"), name=u'staticText6', parent=self,
                                          style=0)
-        self.staticText6.SetFont(wx.Font(fontSize + 1, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+        self.staticText6.SetFont(wx.Font(fontSize + 1, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD))
 
         self.getFromItem = wx.CheckBox(id=wxID_PANELGETFROMITEM,
                                        label=_(u"Get date && time from item, using:"), name=u'getFromItem',

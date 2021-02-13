@@ -12,8 +12,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-from operation import Operation
-import search
+from operations.operation import Operation
+import operations.search as search
 import utils
 import wx
 
@@ -33,7 +33,8 @@ class OpPanel(Operation):
     def __init_sizer(self):
         mainSizer = self.mainSizer = wx.BoxSizer(wx.VERTICAL)
         mainSizer.Add(self.searchFrom, 0, wx.EXPAND | wx.BOTTOM, 3)
-        mainSizer.Add(self.searchTo, 0, wx.EXPAND)
+        mainSizer.Add(self.searchTo, 0, wx.EXPAND | wx.BOTTOM, 3)
+        mainSizer.Add(wx.Size(-1, 5))
         self.SetSizerAndFit(mainSizer)
 
 

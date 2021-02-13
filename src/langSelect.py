@@ -82,13 +82,13 @@ class LangSelect(wx.Dialog):
             lang = lang_info[0]
             setattr(self, lang, wx.RadioButton(id=-1, label=lang_info[1],
                     name=lang, parent=self, style=0))
-            getattr(self, lang).SetToolTipString(u"%s (%s)" % (lang_info[1], lang))
+            getattr(self, lang).SetToolTip(u"%s (%s)" % (lang_info[1], lang))
             setattr(self, '%s_flag' % lang, wx.StaticBitmap(parent=self, id=-1,
                     bitmap=getBitmap(lang_info[2])))
 
         self.ok = wx.Button(id=wx.ID_OK, name=u'ok',
                             parent=self, pos=wx.Point(20, 300), style=0)
-	self.ok.SetDefault()
+        self.ok.SetDefault()
 
         self.cancel = wx.Button(id=wx.ID_CANCEL, name=u'cancel',
                                 parent=self, pos=wx.Point(120, 300), style=0)

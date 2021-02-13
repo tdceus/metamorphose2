@@ -12,16 +12,17 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-import insertTools
-from notebook import Notebook
-from operation import Operation
+import operations.insertTools
+from operations import insertTools
+from operations.notebook import Notebook
+from operations.operation import Operation
 import utils
 import wx
 
 
 class OpPanel(Operation):
     """This panel controls inserts."""
-    
+
     def __init_sizer(self, parent):
         #smallestSize = parent.rightSizer.GetSize() - parent.rightTopSizer.GetSize() - (10,10)
         mainSizer = wx.BoxSizer(wx.VERTICAL)

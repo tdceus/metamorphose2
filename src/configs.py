@@ -38,7 +38,7 @@ def save(main):
     dlg = wx.FileDialog(None, message=_(u"Save configuration as ..."),
                         defaultDir=utils.get_user_path(u'configs'), defaultFile=u'.cfg',
                         wildcard=_(u"Configuration file (*.cfg)") + u'|*.cfg',
-                        style=wx.SAVE | wx.OVERWRITE_PROMPT
+                        style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT
                         )
     # write file
     if dlg.ShowModal() == wx.ID_OK:
@@ -60,7 +60,7 @@ def load(main, configFilePath=False):
                             message=_(u"Load a configuration file"),
                             defaultDir=utils.get_user_path('configs'), defaultFile=u'',
                             wildcard=_(u"Configuration file (*.cfg)") + u'|*.cfg',
-                            style=wx.OPEN
+                            style=wx.FD_OPEN
                             )
         if dlg.ShowModal() == wx.ID_OK:
             LoadConfig(main, dlg.GetPath())
@@ -174,7 +174,7 @@ class SaveConfig():
         cfgFile += u'\t<page id="1" name="%s">\n' % pages[1].GetName()
         cfgFile += self._renaming_ops_to_xml()
         cfgFile += "\t</page>\n</configuration>\n"
-        
+
         return cfgFile
 
 
@@ -241,7 +241,7 @@ class LoadConfig():
                 parent = getattr(parent, id)
             except AttributeError:
                 self.loadError = True
-                print id
+                print (id)
                 pass
             else:
                 for child in node.childNodes:
@@ -349,12 +349,12 @@ class LoadConfig():
             oldPath = main.picker.view.path.GetValue()
 
             self.__load_config_xml(config)
-            
+
             if self.loadError:
                 utils.make_warn_msg(_(u"Not all settings could be loaded."))
 
             # Do not replace a set path if one is not set in the config
-            newPath = main.picker.view.path.GetValue()            
+            newPath = main.picker.view.path.GetValue()
             if oldPath and not newPath:
                 main.picker.view.path.SetValue(oldPath)
 

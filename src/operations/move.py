@@ -15,9 +15,9 @@
 import platform
 import sys
 
-from operation import Operation
-import regExpr
-import search
+from operations.operation import Operation
+import operations.regExpr as regExpr
+import operations.search as search
 import utils
 import wx
 
@@ -81,7 +81,9 @@ class OpPanel(Operation):
 
         self.replMovePosValue = wx.SpinCtrl(id=wxID_PANELREPL_MOVE_POS_VALUE,
                                             initial=0, max=255, min=-255, name=u'replMovePosValue',
-                                            parent=self, size=wx.Size(60, -1), value='0',
+                                            parent=self,
+                                            # size=wx.Size(60, -1),
+                                            value='0',
                                             style=wx.SP_ARROW_KEYS | wx.TE_PROCESS_ENTER)
         self.replMovePosValue.SetValue(0)
         self.replMovePosValue.Bind(wx.EVT_TEXT_ENTER, main.show_preview,

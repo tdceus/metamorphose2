@@ -1,49 +1,61 @@
-This package was debianized by:
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: metamorphose2
+Upstream-Contact: Ianaré Sévi <ianare@gmail.com>
+Source: http://file-folder-ren.sourceforge.net/
 
-    ianaré sévi <ianare@gmail.com> on Sun, 16 Aug 2009 02:13:30 -0400
+Files: *
+Copyright: Copyright (C) 2006-2016 Ianaré Sévi <ianare@gmail.com>
+License: GPL-3
 
-It was downloaded from:
+Files: debian/*
+Copyright: Copyright (C) 2009-2011 Ianaré Sévi <ianare@gmail.com>
+           Copyright (C) 2017-2018 Alin Andrei <webupd8@gmail.com>
+           Copyright (C) 2019 Rob Savoury <savourytech@use.startmail.com>
+License: GPL-3
 
-    http://file-folder-ren.sourceforge.net/
+Files: src/icons/*
+Copyright: Copyright (C) Barbara Kämper <brief@barbarakaemper.de>
+           Copyright (C) 2006 Paul Davey <mattahan@gmail.com>
+License: GPL-any or CC-BY-NC-SA-2.5
+ Unspecified GPL license.
+Comment: In the original debian/copyright file Ianaré Sévi wrote this:
+ "Icons are released under different licenses, check icon_license.txt."
+ .
+ Icons from Barbara Kämper are stated as being GPL (no version given).
+ .
+ The work of Paul Davey is licensed under CC-BY-NC-SA and on his site
+ (http://www.deviantart.com/deviation/37966044/) he links to the 3.0
+ license, but then quotes 2.5 in the written text (so choosing 2.5 as
+ this is based on his actual personal statements, rather than a link).
+ .
+ It is unknown which icons are from which source, hence this comment.
+ .
+ See src/icons/icon_license.txt for further details from Ianaré Sévi.
 
-Upstream Author(s):
+Files: src/icons/flags/*
+License: public-domain
 
-    ianaré sévi <ianare@gmail.com>
+License: GPL-3
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 3 can be found in the file
+ `/usr/share/common-licenses/GPL-3'.
 
-Copyright:
+License: CC-BY-NC-SA-2.5
+ This work is licensed under a Creative Commons
+ Attribution-NonCommercial-ShareAlike 2.5 Generic License.
+ .
+ See <https://creativecommons.org/licenses/by-nc-sa/2.5/> for details.
 
-    Copyright (C) 2006-2009 ianaré sévi
-
-License:
-
-### SELECT: ###
-    This package is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 3 of the License, or
-    (at your option) any later version.
-### OR ###
-   This package is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License version 3 as
-   published by the Free Software Foundation.
-##########
-
-    This package is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this package; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
-
-On Debian systems, the complete text of the GNU General
-Public License can be found in `/usr/share/common-licenses/GPL'.
-
-The Debian packaging is:
-
-    Copyright C) 2009, ianaré sévi <ianare@gmail.com>
-
-and is licensed under the GPLv3, see above.
-
-
-Icons are released under different licenses, check icon_license.txt.

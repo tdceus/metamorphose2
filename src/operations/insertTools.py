@@ -15,9 +15,11 @@
 import platform
 import sys
 
-import opButtons
-import regExpr
+import operations.opButtons
+import operations.regExpr
 import wx
+
+from operations import regExpr, opButtons
 
 [wxID_PANEL, wxID_PANELAFTER, wxID_PANELBARE, wxID_PANELBAREI,
     wxID_PANELBAREU, wxID_PANELBATEXTMATCH, wxID_PANELBEFORE,
@@ -32,7 +34,7 @@ import wx
 
 class Panel(wx.Panel):
     """This panel allows inserting text or operations."""
-    
+
     def __init_sizer(self):
         rowB = wx.BoxSizer(wx.HORIZONTAL)
         rowB.Add(self.prefix, 0, wx.ALIGN_CENTRE | wx.LEFT, 5)
@@ -109,8 +111,9 @@ class Panel(wx.Panel):
 
         self.positionPos = wx.SpinCtrl(id=wxID_PANELPOSITIONPOS, initial=0,
                                        max=255, min=-255, name=u'positionPos', parent=self,
-                                       size=wx.Size(56, -1), style=wx.SP_ARROW_KEYS, value='0')
-        self.positionPos.SetToolTipString(_(u"Use negative values to start from the end of the name."))
+                                       # size=wx.Size(56, -1),
+                                       style=wx.SP_ARROW_KEYS, value='0')
+        self.positionPos.SetToolTip(_(u"Use negative values to start from the end of the name."))
         self.positionPos.Enable(False)
         self.positionPos.Bind(wx.EVT_SPINCTRL, main.show_preview,
                               id=wxID_PANELPOSITIONPOS)

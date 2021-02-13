@@ -12,7 +12,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-import opParser
+import operations.opParser as opParser
 import utils
 import wx
 
@@ -55,20 +55,22 @@ class Panel(wx.Panel):
                                          parent=self, style=0)
 
         self.ins_num = wx.Button(id=wxID_PANELINS_NUM,
-                                 label=_(u"numbering"), name=u'ins_num', parent=self, style=wx.BU_EXACTFIT)
-        self.ins_num.SetToolTipString(_(u"Insert enumerating sequence. Use the 'Numbering settings'\npanel to change settings"))
+                                 label=_(u"numbering"), name=u'ins_num', parent=self,
+                                 size=main.get_button_size(u"numbering"))
+        self.ins_num.SetToolTip(
+            _(u"Insert enumerating sequence. Use the 'Numbering settings'\npanel to change settings"))
         self.ins_num.Bind(wx.EVT_BUTTON, self._on_number_button,
                           id=wxID_PANELINS_NUM)
 
         self.insDate = wx.Button(id=wxID_PANELINSDATE, label=_(u"date"),
-                                 name=u'insDate', parent=self, style=wx.BU_EXACTFIT)
-        self.insDate.SetToolTipString(_(u"Insert date. Use the 'Date / Time settings' panel to\nchange settings"))
+                                 name=u'insDate', parent=self, size=main.get_button_size(u"date"))
+        self.insDate.SetToolTip(_(u"Insert date. Use the 'Date / Time settings' panel to\nchange settings"))
         self.insDate.Bind(wx.EVT_BUTTON, self._on_date_button,
                           id=wxID_PANELINSDATE)
 
         self.insTime = wx.Button(id=wxID_PANELINSTIME, label=_(u"time"),
-                                 name=u'insTime', parent=self, style=wx.BU_EXACTFIT)
-        self.insTime.SetToolTipString(_(u"Insert time. Use the 'Date / Time settings' panel to\nchange settings"))
+                                 name=u'insTime', parent=self, size=main.get_button_size(u"time"))
+        self.insTime.SetToolTip(_(u"Insert time. Use the 'Date / Time settings' panel to\nchange settings"))
         self.insTime.Bind(wx.EVT_BUTTON, self._on_time_button,
                           id=wxID_PANELINSTIME)
 
@@ -93,7 +95,7 @@ class Panel(wx.Panel):
                                    ],
                                    id=wxID_PANELID3SELECT, name=u'id3select', parent=self)
         self.id3select.SetSelection(0)
-        self.id3select.SetToolTipString(_(u"Insert id3 tag information from mp3 file"))
+        self.id3select.SetToolTip(_(u"Insert id3 tag information from mp3 file"))
         self.id3select.Bind(wx.EVT_CHOICE, self._on_id3, id=wxID_PANELID3SELECT)
 
         self.EXIFselect = wx.Choice(choices=[
@@ -121,20 +123,21 @@ class Panel(wx.Panel):
                                     id=wxID_PANELEXIFSELECT, name=u'EXIFselect', parent=self,
                                     size=wx.Size(128, -1))
         self.EXIFselect.SetSelection(0)
-        self.EXIFselect.SetToolTipString(_(u"Insert Exif tag information from tiff or jpeg file.\nUse the date button to insert Exif date"))
+        self.EXIFselect.SetToolTip(
+            _(u"Insert Exif tag information from tiff or jpeg file.\nUse the date button to insert Exif date"))
         self.EXIFselect.Bind(wx.EVT_CHOICE, self._on_exif, id=wxID_PANELEXIFSELECT)
 
         self.folder = wx.Button(id=wxID_PANELFOLDER, label=_(u"folder:"),
-                                name=u'folder', parent=self, style=wx.BU_EXACTFIT)
-        self.folder.SetToolTipString(_(u"Insert parent folder name"))
+                                name=u'folder', parent=self, size=main.get_button_size(u"folder:"))
+        self.folder.SetToolTip(_(u"Insert parent folder name"))
         self.folder.Bind(wx.EVT_BUTTON, self._on_folder_button, id=wxID_PANELFOLDER)
 
         self.folderDepth = wx.SpinCtrl(id=wxID_PANELFOLDERDEPTH,
                                        initial=1, max=999, min=1, name=u'folderDepth',
-                                       parent=self, pos=wx.Point(200, 104), size=wx.Size(50, -1),
+                                       parent=self, pos=wx.Point(200, 104), # size=wx.Size(50, -1),
                                        value='1', style=wx.SP_ARROW_KEYS)
         self.folderDepth.SetValue(1)
-        self.folderDepth.SetToolTipString(_(u"How far back to get folder"))
+        self.folderDepth.SetToolTip(_(u"How far back to get folder"))
 
     def __init__(self, prnt, main_window, name=u'opButtonsPanel'):
         global main

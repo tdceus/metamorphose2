@@ -94,25 +94,26 @@ class Panel(wx.Panel):
                                          label=_(u"items with:"), name=u'staticText1', parent=self, style=0)
 
         self.saveToLog = wx.Button(id=wxID_ERRORPANELERRORSSAVE, name=u'remove',
-                                   parent=self, label=_(u"Save errors to log"), style=wx.BU_EXACTFIT)
-        self.saveToLog.SetToolTipString(_(u"Save errors to a log file."))
+                                   parent=self, label=_(u"Save errors to log"),
+                                   size=main.get_button_size(_(u"Save errors to log")))
+        self.saveToLog.SetToolTip(_(u"Save errors to a log file."))
         self.saveToLog.Bind(wx.EVT_BUTTON, self.save_errors_to_log)
         self.saveToLog.Enable(False)
 
         self.remove = wx.Button(id=wxID_ERRORPANELERRORSREMOVE, name=u'remove',
-                                parent=self, label=_(u"Remove"), style=wx.BU_EXACTFIT)
-        self.remove.SetToolTipString(_(u"Remove items from renaming selection"))
+                                parent=self, label=_(u"Remove"), size=main.get_button_size(_(u"Remove")))
+        self.remove.SetToolTip(_(u"Remove items from renaming selection"))
         self.remove.Bind(wx.EVT_BUTTON, self.remove_names_by_type)
 
         self.removeWarnings = wx.CheckBox(id=wxID_ERRORPANELERRORSREMOVEWARNINGS, label=_(u"warnings"),
                                           name=u'removeWarnings', parent=self, style=0)
         self.removeWarnings.SetValue(False)
-        self.removeWarnings.SetToolTipString(_(u"all items with warnings"))
+        self.removeWarnings.SetToolTip(_(u"all items with warnings"))
 
         self.removeErrors = wx.CheckBox(id=wxID_ERRORPANELERRORSREMOVEERRORS, label=_(u"errors"),
                                         name=u'removeErrors', parent=self, style=0)
         self.removeErrors.SetValue(True)
-        self.removeErrors.SetToolTipString(_(u"all items with errors"))
+        self.removeErrors.SetToolTip(_(u"all items with errors"))
 
         self.staticText2 = wx.StaticText(id=wxID_ERRORPANELERRORSSTATICTEXT2,
                                          label=_("from above items."), name=u'staticText1', parent=self, style=0)
@@ -191,7 +192,7 @@ class Panel(wx.Panel):
         dlg = wx.FileDialog(self, message=_(u"Save error list as ..."),
                             defaultDir='', defaultFile=u'.csv',
                             wildcard=_(u"Log file (*.csv)") + u'|*.csv',
-                            style=wx.SAVE | wx.OVERWRITE_PROMPT
+                            style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT
                             )
         if dlg.ShowModal() == wx.ID_OK:
             # attempt to write file

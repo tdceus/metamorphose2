@@ -19,7 +19,7 @@ import classes
 import utils
 import wx
 import wx.lib.buttons
-import wx.lib.hyperlink as hl
+import wx.lib.agw.hyperlink as hl
 
 
 def create(parent):
@@ -35,13 +35,13 @@ class About(wx.Dialog):
     """The about dialog."""
 
     def _get_wxversion(self):
-	"""Get the wxPython Version."""
-	wxVer = ""
-	for x in wx.VERSION:
-	    wxVer = wxVer + str(x) + "."
-	wxVer = wxVer.rstrip(".")
-	return wxVer
-  
+        """Get the wxPython Version."""
+        wxVer = ""
+        for x in wx.VERSION:
+            wxVer = wxVer + str(x) + "."
+        wxVer = wxVer.rstrip(".")
+        return wxVer
+
     def __init_sizer(self):
         bottomRow = wx.BoxSizer(wx.HORIZONTAL)
         bottomRow.Add(self.bugReport, 0, wx.ALIGN_CENTER | wx.RIGHT)
@@ -73,29 +73,29 @@ class About(wx.Dialog):
         fontFamily = fontParams['family']
         fontStyle = fontParams['style']
 
-        self.SetFont(wx.Font(fontSize + 1, fontFamily, fontStyle, wx.NORMAL, False, u'Times New Roman'))
+        self.SetFont(wx.Font(fontSize + 1, fontFamily, fontStyle, wx.FONTWEIGHT_NORMAL, False, u'Times New Roman'))
         self.Center(wx.HORIZONTAL | wx.VERTICAL)
         self.SetThemeEnabled(True)
 
         self.greet = wx.StaticText(id=wxID_ABOUTGREET,
                                    label=u"Métamorphose 2", name=u'greet', parent=self)
-        self.greet.SetFont(wx.Font(fontSize + 4, fontFamily, fontStyle, wx.BOLD, False))
+        self.greet.SetFont(wx.Font(fontSize + 4, fontFamily, fontStyle, wx.FONTWEIGHT_BOLD, False))
 
         self.CLOSE = wx.BitmapButton(id=wxID_ABOUTCLOSE,
                                      bitmap=wx.Bitmap(utils.icon_path(u'metamorphose128.png'), wx.BITMAP_TYPE_PNG),
                                      name=u'CLOSE', parent=self, style=wx.BU_AUTODRAW)
-        self.CLOSE.SetToolTipString(_(u"Click here to exit"))
+        self.CLOSE.SetToolTip(_(u"Click here to exit"))
         self.CLOSE.Bind(wx.EVT_BUTTON, self.on_close_button, id=wxID_ABOUTCLOSE)
 
         self.copyright = wx.StaticText(id=wxID_ABOUTCOPYRIGHT,
                                        label=u"Copyright © 2006-2015 Ianaré Sévi", name=u'copyright',
                                        parent=self)
-        self.copyright.SetFont(wx.Font(fontSize + 2, fontFamily, fontStyle, wx.BOLD, False))
+        self.copyright.SetFont(wx.Font(fontSize + 2, fontFamily, fontStyle, wx.FONTWEIGHT_BOLD, False))
 
         self.version = wx.StaticText(id=wxID_ABOUTVERSION,
                                      label=_(u"Version: %s") % app.version,
                                      name=u'version', parent=self)
-        self.version.SetFont(wx.Font(fontSize + 2, fontFamily, fontStyle, wx.BOLD, False))
+        self.version.SetFont(wx.Font(fontSize + 2, fontFamily, fontStyle, wx.FONTWEIGHT_BOLD, False))
 
         self.wxVersion = wx.StaticText(id=wxID_ABOUTWXVERSION,
                                        label=_(u"Using Python %s, wxPython %s") % (
@@ -103,7 +103,7 @@ class About(wx.Dialog):
                                            self._get_wxversion()
                                        ),
                                        name=u'version', parent=self)
-        self.wxVersion.SetFont(wx.Font(fontSize + 1, fontFamily, fontStyle, wx.NORMAL, False))
+        self.wxVersion.SetFont(wx.Font(fontSize + 1, fontFamily, fontStyle, wx.FONTWEIGHT_NORMAL, False))
 
         self.link = hl.HyperLinkCtrl(self, wxID_ABOUTLINK, _(u"Metamorphose Home Page"),
                                      URL=u'http://file-folder-ren.sourceforge.net/', style=0)
@@ -114,7 +114,7 @@ class About(wx.Dialog):
 
         self.donateButton = wx.Button(id=wxID_PANELDONATEBUTTON,
                                       label=_(u"Donate"), name=u'donateButton', parent=self)
-        self.donateButton.SetFont(wx.Font(fontSize + 4, fontFamily, fontStyle, wx.BOLD, False,
+        self.donateButton.SetFont(wx.Font(fontSize + 4, fontFamily, fontStyle, wx.FONTWEIGHT_BOLD, False,
                                           u'Times New Roman'))
         self.donateButton.Bind(wx.EVT_BUTTON, self.on_donate_button,
                                id=wxID_PANELDONATEBUTTON)

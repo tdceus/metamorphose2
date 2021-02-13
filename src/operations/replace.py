@@ -14,9 +14,9 @@
 
 import sre_constants
 
-from notebook import Notebook
-from operation import Operation
-import replaceTools
+from operations.notebook import Notebook
+from operations.operation import Operation
+import operations.replaceTools as replaceTools
 import utils
 import wx
 
@@ -85,7 +85,7 @@ class OpPanel(Operation):
             #case sensitive:
             else:
                 newName = newName.replace(find, parsedText)
-        
+
         #- replace everything if text field is blank:
         elif searchValues[0] == u"text":
             newName = operations.parse_input(text, original, self)

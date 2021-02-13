@@ -80,12 +80,12 @@ class EnhancedStatusBarItem(object):
 
 class EnhancedStatusBar(wx.StatusBar):
 
-    def __init__(self, parent, id=wx.ID_ANY, style=wx.ST_SIZEGRIP,
+    def __init__(self, parent, id=wx.ID_ANY, style=wx.STB_SIZEGRIP,
                  name=u"EnhancedStatusBar"):
         """Default Class Constructor.
 
         EnhancedStatusBar.__init__(self, parent, id=wx.ID_ANY,
-                                   style=wx.ST_SIZEGRIP,
+                                   style=wx.STB_SIZEGRIP,
                                    name="EnhancedStatusBar")
         """
 
@@ -95,7 +95,8 @@ class EnhancedStatusBar(wx.StatusBar):
         self._curPos = 0
         self._parent = parent
 
-        wx.EVT_SIZE(self, self.OnSize)
+        #wx.EVT_SIZE(self, self.OnSize)
+        wx.EvtHandler.Bind(self,wx.EVT_SIZE, self.OnSize)
         wx.CallAfter(self.OnSize, None)
 
 
@@ -224,15 +225,15 @@ class EnhancedStatusBar(wx.StatusBar):
 
         if horizontalalignment not in [ESB_ALIGN_CENTER_HORIZONTAL, ESB_EXACT_FIT,
                                        ESB_ALIGN_LEFT, ESB_ALIGN_RIGHT]:
-            raise u'\nERROR: Parameter "horizontalalignment" Should Be One Of '\
-                  u'"ESB_ALIGN_CENTER_HORIZONTAL", "ESB_ALIGN_LEFT", "ESB_ALIGN_RIGHT"' \
-                  u'"ESB_EXACT_FIT"'
+            raise Exception(u'\nERROR: Parameter "horizontalalignment" Should Be One Of '
+                  u'"ESB_ALIGN_CENTER_HORIZONTAL", "ESB_ALIGN_LEFT", "ESB_ALIGN_RIGHT"' 
+                  u'"ESB_EXACT_FIT"')
 
         if verticalalignment not in [ESB_ALIGN_CENTER_VERTICAL, ESB_EXACT_FIT,
                                      ESB_ALIGN_TOP, ESB_ALIGN_BOTTOM]:
-            raise u'\nERROR: Parameter "verticalalignment" Should Be One Of '\
-                  u'"ESB_ALIGN_CENTER_VERTICAL", "ESB_ALIGN_TOP", "ESB_ALIGN_BOTTOM"' \
-                  u'"ESB_EXACT_FIT"'
+            raise Exception(u'\nERROR: Parameter "verticalalignment" Should Be One Of '
+                  u'"ESB_ALIGN_CENTER_VERTICAL", "ESB_ALIGN_TOP", "ESB_ALIGN_BOTTOM"' 
+                  u'"ESB_EXACT_FIT"')
 
 
         try:

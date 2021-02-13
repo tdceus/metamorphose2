@@ -13,10 +13,10 @@
 # GNU General Public License for more details.
 
 import app
-import engine
+import renamer.engine
 import operations
-import preview
-import wxRenamerView
+import renamer.preview
+import renamer.wxRenamerView
 
 
 class Core():
@@ -27,7 +27,7 @@ class Core():
     Handles high level previewing and renaming of items.
     """
     def __init__(self, parent, MainWindow):
-        app.debug_print("loading renamer core");
+        app.debug_print("loading renamer core")
         global main
         main = MainWindow
         self.operations = [] # operations stack

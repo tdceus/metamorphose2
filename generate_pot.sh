@@ -2,14 +2,23 @@
 
 # Grabs all translatable strings in python files
 
-FILES=''
+[ -f messages.pot ] && rm messages.pot
+[ -f messages/messages.pot ] && cp messages/messages.pot .
+
+FILE=''
 
 cd src
 
-for file in `find . -name "*.py"`; do
-    FILES="$FILES ${file:2}";
+for file in `find . -path ./mutagen -prune -false -o -name "*.py"`; do
+	echo "${file:2}"
+    	FILES="$FILES ${file:2}";
 done
 
-pygettext -a $FILES
 
-mv messages.pot ../messages/
+#xgettext -L Python --msgstr-prefix="_(u" --msgstr-suffix=")" -a $FILES
+xgettext -d src --keyword="_:1" -o ../messages.pot $FILES
+
+[ -f ../messages/messages.pot.sav ] && rm ../messages/messages.pot.sav
+[ -f ../messages/messages.pot ] && mv ../messages/messages.pot ../messages/messages.pot.sav
+
+mv ../messages.pot ../messages/

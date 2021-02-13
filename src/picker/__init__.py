@@ -17,7 +17,7 @@ Selects and deselects items based on user input.
 Supports direct selection, regular expression filters, and attribute filters.
 """
 
-from __future__ import print_function
+#from __future__ import print_function
 import os
 import re
 import sre_constants
@@ -27,7 +27,7 @@ import time
 import app
 import classes
 import utils
-import wxPickerView
+import picker.wxPickerView
 
 
 class Parameters(classes.Parameters):
@@ -309,7 +309,8 @@ class Core():
 
                 except UnicodeDecodeError as err:
                     entry = err[1].decode(sys.getfilesystemencoding(), 'replace')
-                    msg = _("The item '%s' has an encoding error.\nUnable to process this path in recursive mode, please correct the name and try again.")\
+                    msg = _("The item '%s' has an encoding error.\nUnable to process this path in recursive "
+                            "mode, please correct the name and try again.")\
                         % entry
                     utils.make_err_msg(msg, _("Unable to load item"))
                     error = True
@@ -335,7 +336,7 @@ class Core():
                         try:
                             isFolder = isdir(entry)
                         except UnicodeDecodeError:
-                            entry = entry.decode(sys.getfilesystemencoding(), 'replace')
+                            #entry = entry.decode(sys.getfilesystemencoding(), 'replace')
                             isFolder = isdir(entry)
                             encodingError = True
                         # load folders if set:

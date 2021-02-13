@@ -12,7 +12,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-from operation import Operation
+from operations.operation import Operation
 import wx
 
 [wxID_PANEL, wxID_PANELMOD_LENGTH, wxID_PANELMOD_LENGTH_DIRECTION,
@@ -62,10 +62,11 @@ class OpPanel(Operation):
 
         self.modLength = wx.SpinCtrl(id=wxID_MAINPANELMOD_LENGTH, initial=1,
                                      max=255, min=1, name=u'modLength', parent=self, pos=wx.Point(120,
-                                     64), size=wx.Size(50, -1), value='64',
+                                     64), # size=wx.Size(50, -1),
+                                     value='64',
                                      style=wx.SP_ARROW_KEYS | wx.TE_PROCESS_ENTER)
         self.modLength.SetValue(64)
-        self.modLength.SetToolTipString(_(u"Length after modification"))
+        self.modLength.SetToolTip(_(u"Length after modification"))
         self.modLength.Bind(wx.EVT_TEXT_ENTER, main.show_preview,
                             id=wxID_MAINPANELMOD_LENGTH)
         self.modLength.Bind(wx.EVT_SPINCTRL, main.show_preview,
@@ -104,11 +105,12 @@ class OpPanel(Operation):
 
         self.mod_length_position = wx.SpinCtrl(id=wxID_PANELMOD_LENGTH_POSITION,
                                                initial=0, max=256, min=-256, name=u'mod_length_position',
-                                               parent=self, size=wx.Size(45, -1), value='0',
+                                               parent=self, # size=wx.Size(45, -1),
+                                               value='0',
                                                style=wx.SP_ARROW_KEYS | wx.TE_PROCESS_ENTER)
         self.mod_length_position.SetValue(0)
         self.mod_length_position.Enable(False)
-        self.mod_length_position.SetToolTipString(_(u"(0 = first character)"))
+        self.mod_length_position.SetToolTip(_(u"(0 = first character)"))
         self.mod_length_position.Bind(wx.EVT_TEXT_ENTER, main.show_preview,
                                       id=wxID_PANELMOD_LENGTH_POSITION)
         self.mod_length_position.Bind(wx.EVT_SPINCTRL, main.show_preview,
@@ -169,7 +171,7 @@ class OpPanel(Operation):
             #padding by inserting at position:
             else:
                 padSize = width - len(newName)
-                newName = newName[:position] + unicode(padChar * padSize) + \
+                newName = newName[:position] + str(padChar * padSize) + \
                     newName[position:]
             return newName
 

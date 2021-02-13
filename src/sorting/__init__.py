@@ -25,7 +25,7 @@ import app
 from exif import EXIF
 import classes
 import utils
-import wxSortingView
+import sorting.wxSortingView
 
 
 class Parameters(classes.Parameters):
@@ -54,7 +54,7 @@ class Parameters(classes.Parameters):
 
 class Core():
     def __init__(self, parent, main_window):
-        app.debug_print("loading sorting core");
+        app.debug_print("loading sorting core")
         global main
         main = main_window
         if sys.platform == u'win32':
@@ -78,7 +78,7 @@ class Core():
                 return False
             else:
                 try:
-                    datetime = unicode(data[ref[selection]])
+                    datetime = str(data[ref[selection]])
                 except KeyError:
                     return False
                 else:

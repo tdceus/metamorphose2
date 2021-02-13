@@ -61,7 +61,7 @@ class SmallHelp(wx.Dialog):
         self.SetIcon(wx.Icon(utils.icon_path(u'%s.ico') % icon, wx.BITMAP_TYPE_ICO))
 
         self.display = wx.html.HtmlWindow(id=-1,
-                                          name=u'display', parent=self, style=wx.html.HW_SCROLLBAR_AUTO)
+                                          name=u'display', parent=self, style=wx.HSCROLL | wx.VSCROLL)
         #self.display.SetMinSize(wx.Size(1010, 531))
 
         self.Center(wx.HORIZONTAL | wx.VERTICAL)
@@ -87,7 +87,7 @@ class ProgressDialog(wx.ProgressDialog):
         
         if type(items) is not type(1):
             items = len(items)
-        message = message.replace(u'%%%', unicode(items))
+        message = message.replace(u'%%%', str(items))
 
         if prefs.get('showProgressDialog') and items > int(prefs.get(u'itemCountForProgDialog')):
             self.active = True

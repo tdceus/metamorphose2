@@ -17,7 +17,7 @@ This is the main application.
 """
 
 # needed modules:
-from __future__ import print_function
+#from __future__ import print_function
 import codecs
 import gettext
 import locale
@@ -27,7 +27,7 @@ import re
 import sys
 import time
 
-import EnhancedStatusBar as ESB
+import MainWindow.EnhancedStatusBar as ESB
 import about
 import app
 import classes
@@ -64,8 +64,8 @@ wxID_MENUPICKER_WALK, wxID_MENUPICKER_BROWSE,
 wxID_MENUPICKER_OK,
 
 wxID_MENUSETTINGS_PREFERENCES, wxID_MENUSETTINGS_LANG,
-
- ] = [wx.NewId() for __init_menu_edit in range(27)]
+wxID_TMP
+ ] = [wx.NewId() for __init_menu_edit in range(28)]
 
 
 class MySplitter(wx.SplitterWindow):
@@ -133,18 +133,18 @@ class MainWindow(wx.Frame):
         parent.exitMenu.SetBitmap(wx.Bitmap(utils.icon_path(u'exit.png'),
                                   wx.BITMAP_TYPE_PNG))
 
-        parent.AppendItem(parent.LoadIniMenu)
-        parent.AppendItem(parent.SaveIniMenu)
+        parent.Append(parent.LoadIniMenu)
+        parent.Append(parent.SaveIniMenu)
         parent.AppendSeparator()
-        parent.AppendItem(parent.SaveLog)
+        parent.Append(parent.SaveLog)
         parent.SaveLog.Enable(False)
-        parent.AppendItem(parent.Import)
+        parent.Append(parent.Import)
         parent.AppendSeparator()
-        parent.AppendItem(parent.PreviewMenu)
-        parent.AppendItem(parent.GoMenu)
+        parent.Append(parent.PreviewMenu)
+        parent.Append(parent.GoMenu)
         parent.AppendSeparator()
-        parent.AppendItem(parent.resetApp)
-        parent.AppendItem(parent.exitMenu)
+        parent.Append(parent.resetApp)
+        parent.Append(parent.exitMenu)
 
         self.Bind(wx.EVT_MENU, self.save_items_as_text,
                   id=wxID_MENUFILE_SAVELOG)
@@ -176,8 +176,8 @@ class MainWindow(wx.Frame):
         parent.destroyAllMenu.SetBitmap(wx.Bitmap(utils.icon_path(u'nuke.png'),
                                         wx.BITMAP_TYPE_PNG))
 
-        parent.AppendItem(parent.destroyMenu)
-        parent.AppendItem(parent.destroyAllMenu)
+        parent.Append(parent.destroyMenu)
+        parent.Append(parent.destroyAllMenu)
 
         self.Bind(wx.EVT_MENU, self.renamer.view.delete_operation,
                   id=wxID_MENURENAMER_DESTROY)
@@ -212,12 +212,12 @@ class MainWindow(wx.Frame):
         parent.walkMenu.SetBitmap(wx.Bitmap(utils.icon_path(u'walk.png'),
                                   wx.BITMAP_TYPE_PNG))
 
-        parent.AppendItem(parent.browseMenu)
-        parent.AppendItem(parent.okMenu)
+        parent.Append(parent.browseMenu)
+        parent.Append(parent.okMenu)
         parent.AppendSeparator()
-        parent.AppendItem(parent.getAllMenu)
-        parent.AppendItem(parent.getNoneMenu)
-        parent.AppendItem(parent.walkMenu)
+        parent.Append(parent.getAllMenu)
+        parent.Append(parent.getNoneMenu)
+        parent.Append(parent.walkMenu)
 
         self.Bind(wx.EVT_MENU, self.picker.browse_for_path,
                   id=wxID_MENUPICKER_BROWSE)
@@ -241,11 +241,11 @@ class MainWindow(wx.Frame):
 
         parent.PrefsMenu.SetBitmap(wx.Bitmap(
                                    utils.icon_path(u'preferences.ico'), wx.BITMAP_TYPE_ICO))
-        parent.AppendItem(parent.PrefsMenu)
+        parent.Append(parent.PrefsMenu)
 
         parent.langMenu.SetBitmap(wx.Bitmap(
                                   utils.icon_path(u'language.png'), wx.BITMAP_TYPE_PNG))
-        parent.AppendItem(parent.langMenu)
+        parent.Append(parent.langMenu)
 
         self.Bind(wx.EVT_MENU, self.show_preferences,
                   id=wxID_MENUSETTINGS_PREFERENCES)
@@ -283,11 +283,11 @@ class MainWindow(wx.Frame):
         parent.REhelpMenu.SetBitmap(wx.Bitmap(utils.icon_path(u're.ico'),
                                     wx.BITMAP_TYPE_ICO))
 
-        parent.AppendItem(parent.aboutMenu)
-        parent.AppendItem(parent.helpMenu)
-        parent.AppendItem(parent.examplesMenu)
-        parent.AppendItem(parent.FormatHelpMenu)
-        parent.AppendItem(parent.REhelpMenu)
+        parent.Append(parent.aboutMenu)
+        parent.Append(parent.helpMenu)
+        parent.Append(parent.examplesMenu)
+        parent.Append(parent.FormatHelpMenu)
+        parent.Append(parent.REhelpMenu)
 
         self.Bind(wx.EVT_MENU, self.show_about,
                   id=wxID_MENUHELP_ABOUT)
@@ -360,9 +360,9 @@ class MainWindow(wx.Frame):
         else:
             app.fontParams = {
                 'size': 9,
-                'style': wx.NORMAL,
-                'family': wx.DEFAULT,
-                'weight': wx.NORMAL,
+                'style': wx.FONTSTYLE_NORMAL,
+                'family': wx.FONTFAMILY_DEFAULT,
+                'weight': wx.FONTWEIGHT_NORMAL,
             }
         #print(app.fontParams)
         self.SetFont(wx.Font(
@@ -400,7 +400,7 @@ class MainWindow(wx.Frame):
         # notebook
         self.notebook = wx.Notebook(id=wxID_MAIN_WINDOWNOTEBOOK,
                                     name=u'notebook', parent=self.splitter,
-                                    style=wx.NB_TOP | wx.NO_BORDER)
+                                    style=wx.NB_TOP)
         self.notebook.SetThemeEnabled(True)
 
         self.bottomWindow = bottomWindow.MainPanel(self.splitter, self)
@@ -409,11 +409,11 @@ class MainWindow(wx.Frame):
         self.splitter.SetMinimumPaneSize(40)
 
         if wx.Platform == '__WXGTK__':
-            split = -210
+            split = -185
         elif wx.Platform == '__WXMSW__':
-            split = -200
+            split = -175
         else:
-            split = -205
+            split = -180
         self.splitter.SplitHorizontally(self.notebook, self.bottomWindow, split)
 
     def set_language(self):
@@ -485,7 +485,7 @@ class MainWindow(wx.Frame):
             print("Try running messages/update_langs.sh\n")
             sys.exit(1)
 
-        Lang.install(unicode=True)
+        Lang.install()
 
         # set some globals
         if language not in rightToLeftLanguages:
@@ -497,7 +497,8 @@ class MainWindow(wx.Frame):
         app.language = language
         app.debug_print("Set language: " + app.language)
 
-        self.encoding = unicode(locale.getlocale()[1])
+        locale.setlocale(locale.LC_ALL, '')
+        self.encoding = str(locale.getlocale()[1])
         app.debug_print("Set encoding: " + self.encoding)
 
         # to get some language settings to display properly:
@@ -556,7 +557,7 @@ class MainWindow(wx.Frame):
         global picker
         import picker
         global bottomWindow
-        import bottomWindow
+        import MainWindow.bottomWindow
 
         # initialize preferences
         app.debug_print("======== Preferences =======")
@@ -576,7 +577,7 @@ class MainWindow(wx.Frame):
                 renamedFile = codecs.open(utils.get_user_path(u'undo/renamed.bak'),
                                           'w', "utf-8")
                 renamedFile.write('')
-            except IOError, error:
+            except IOError as error:
                 utils.make_err_msg(_(u"%s\n\nCould not clear undo") % error,
                                    _(u"Error"))
                 pass
@@ -641,8 +642,8 @@ class MainWindow(wx.Frame):
         """Write given language to 'language.ini' file."""
         try:
             langFile = codecs.open(utils.get_user_path(u'language.ini'), 'w', 'utf-8')
-        except IOError, error:
-            utils.make_err_msg(unicode(error), u"Error")
+        except IOError as error:
+            utils.make_err_msg(str(error), u"Error")
             pass
         else:
             langFile.write(language)
@@ -665,6 +666,19 @@ class MainWindow(wx.Frame):
         self.statusImage.SetBitmap(self.statusImages[img])
         self.SetStatusText(self.make_space(msg))
         app.debug_print(u"status message: '%s'" % msg)
+
+    def get_button_size(self, labels):
+        if type(labels).__name__ == 'str':
+            labels = [labels]
+        if type(labels).__name__ == 'tuple':
+            labels = list(labels)
+
+        separator = "\n"
+        label = separator.join(list(labels))
+        tmplabel = wx.StaticText(id=wxID_TMP, label=_(label), name='tmp', parent=self, style=0)
+        btnwidth= tmplabel.GetClientSize().width + 8
+        tmplabel.Destroy()
+        return wx.Size(btnwidth, -1)
 
 #
 #--- MENU ACTIONS: -----------------------------------------------------------#
@@ -699,7 +713,7 @@ class MainWindow(wx.Frame):
 
             # create file contents
             for original, renamed in self.toRename:
-                CSVfile += unicode(q + original[0] + q + sep + q + renamed[0] + q + '\n')
+                CSVfile += q + original[0] + q + sep + q + renamed[0] + q + "\n"
 
             if app.showTimes:
                 print("Export file contents for %s items: %s" % (len(self.toRename), (time.time() - t)))
@@ -709,7 +723,7 @@ class MainWindow(wx.Frame):
                 dlg = wx.FileDialog(self, message=_(u"Save current items as ..."),
                                     defaultDir='', defaultFile=u'.%s' % ext,
                                     wildcard=_(u"CSV file (*.%s)") % ext + u'|*.%s' % ext,
-                                    style=wx.SAVE | wx.OVERWRITE_PROMPT
+                                    style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT
                                     )
                 if dlg.ShowModal() == wx.ID_OK:
                     # attempt to write file
@@ -741,7 +755,7 @@ class MainWindow(wx.Frame):
         dlg = wx.FileDialog(
                             self, message=_(u"Import selection from ..."), defaultDir=path,
                             defaultFile=u'', wildcard=wildOnes,
-                            style=wx.OPEN | wx.CHANGE_DIR)
+                            style=wx.FD_OPEN | wx.FD_CHANGE_DIR)
 
         if dlg.ShowModal() == wx.ID_OK:
             original = []
@@ -769,7 +783,7 @@ class MainWindow(wx.Frame):
                     unloadbles += "%s\n" % line[o]
 
             # set up for display
-            self.toRename = zip(original, renamed)
+            self.toRename = list(zip(original, renamed))
             self.picker.view.path.SetValue('')
             self.picker.clear_all()
 
@@ -859,7 +873,7 @@ class MainWindow(wx.Frame):
         display.SetImageList(display.imgs, wx.IMAGE_LIST_SMALL)
 
         display.DeleteAllItems()
-        display.SetItemCount(len(self.toRename))
+        display.SetItemCount(len(list(self.toRename)))
 
         #display.Enable(True)
 
@@ -888,7 +902,7 @@ class MainWindow(wx.Frame):
 
     def on_item_selected(self, event):
         """Set the selected item."""
-        self.currentItem = event.m_itemIndex
+        self.currentItem = event.GetIndex()
 
     def change_item_order(self, change):
         """Move the selected item."""

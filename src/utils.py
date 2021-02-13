@@ -16,7 +16,7 @@
 Helper functions available throughout Metamorphose.
 """
 
-from __future__ import print_function
+#from __future__ import print_function
 import codecs
 import locale
 import os
@@ -82,7 +82,7 @@ def safe_makedir(dir):
             if error[0] == 17:
                 pass
             else:
-                make_err_msg(unicode(error), u"Error")
+                make_err_msg(str(error), u"Error")
                 pass
 
 
@@ -174,10 +174,10 @@ def write_file(path, data):
     try:
         fp = codecs.open(path, 'w', 'utf_8')
     except (IOError, OSError) as error:
-        make_err_msg(unicode(error), _(u"Error"))
+        make_err_msg(str(error), _(u"Error"))
         pass
     else:
-        fp.write(unicode(data))
+        fp.write(str(data))
         fp.close()
 
 
@@ -205,8 +205,8 @@ def dev_null(event):
 def udate(main, format, itemDateTime):
     """Time encode/decode crap, a workaround for strftime not accepting unicode."""
     #print(main.encoding)
-    udate = time.strftime(format.encode(main.encoding), itemDateTime)
-    return udate.decode(main.encoding)
+    udate = time.strftime(format, tuple(itemDateTime))
+    return udate
 
 
 def set_busy(busy):

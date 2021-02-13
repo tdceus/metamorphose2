@@ -20,9 +20,9 @@ Uses search panel.
 
 import sre_constants
 
-import accentStrip
-from operation import Operation
-import search
+import operations.accentStrip
+from operations.operation import Operation
+import operations.search as search
 import utils
 import wx
 
@@ -263,7 +263,7 @@ class OpPanel(Operation):
                 match = match.group()
             enc = self.encodingSelect.GetStringSelection()
             match = match.encode(enc, 'backslashreplace')
-            match = unicode(match, 'utf_8', 'replace')
+            match = str(match, 'utf_8', 'replace')
             return match
 
         # set possible modifications and selected operation:

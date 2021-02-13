@@ -12,7 +12,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-from __future__ import print_function
+#from __future__ import print_function
 import os
 import sys
 
@@ -45,11 +45,11 @@ def __set_real_path():
         path = False
         for path in sys.path:
             if 'metamorphose' in path:
-                path = path.decode(sys.getfilesystemencoding())
+              #  path = path.decode(sys.getfilesystemencoding())
                 break
         if not path:
             print("Could not determine application path.\nMake sure the application is correctly installed.\n")
-            sys.exit(1);
+            sys.exit(1)
         #print(path)
     return os.path.join(path)
 

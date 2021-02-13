@@ -12,18 +12,18 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-from __future__ import print_function
+#from __future__ import print_function
 import codecs
 import logging
 import os
 
 import app
-import automation
-import colors
-from dialog import Dialog
-import display
-import errorCheck
-import general
+import preferences.automation
+import preferences.colors
+from preferences.dialog import Dialog
+import preferences.display
+import preferences.errorCheck
+import preferences.general
 import utils
 import sys
 import wx
@@ -95,7 +95,7 @@ class Methods:
                 except KeyError:
                     pass
                 except ValueError:
-                    prefs[split[0]] = unicode(split[1])
+                    prefs[split[0]] = split[1]
                     pass
         prefFile.close()
         return prefs

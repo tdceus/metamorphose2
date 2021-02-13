@@ -18,7 +18,7 @@ The bottom half of the main window.
 import os
 
 import app
-import editDialog
+import MainWindow.editDialog
 import utils
 import wx
 import wx.lib.buttons as buttons
@@ -54,13 +54,13 @@ class ListCtrl(wx.ListCtrl):
 
     def set_preferences(self):
         prefs = app.prefs
-        self.green = wx.ListItemAttr()
+        self.green = wx.ItemAttr()
         self.green.SetBackgroundColour(prefs.get(u'renamedColor'))
-        self.lightGreen = wx.ListItemAttr()
+        self.lightGreen = wx.ItemAttr()
         self.lightGreen.SetBackgroundColour(prefs.get(u'willChangeColor'))
-        self.red = wx.ListItemAttr()
+        self.red = wx.ItemAttr()
         self.red.SetBackgroundColour(prefs.get(u'errorColor'))
-        self.yellow = wx.ListItemAttr()
+        self.yellow = wx.ItemAttr()
         self.yellow.SetBackgroundColour(prefs.get(u'warnColor'))
 
     def __init_menu(self, menu):
@@ -202,7 +202,7 @@ class ListCtrl(wx.ListCtrl):
         if original[1]:
             # show preview if available
             if app.prefs.get('showPreviewIcons') and\
-                pickerList.thumbnails.has_key(original[0]):
+                original[0] in pickerList.thumbnails:
                     img = pickerList.thumbnails[original[0]]
             else:
                 img = 1
@@ -218,14 +218,14 @@ class MainPanel(wx.Panel):
     def __init_sizer(self):
         buttonSizer = self.buttonSizer = wx.BoxSizer(wx.HORIZONTAL)
         mainSizer = self.mainSizer = wx.BoxSizer(wx.VERTICAL)
-        buttonSizer.AddWindow(self.preview, 0, wx.LEFT, 10)
-        buttonSizer.AddWindow(self.go, 0, wx.LEFT, 10)
-        buttonSizer.AddSpacer((-1, 25), 1)
-        buttonSizer.AddWindow(self.imgPreview, 0, wx.ALIGN_CENTER | wx.RIGHT, 5)
-        buttonSizer.AddWindow(self.thumbSize, 0, wx.ALIGN_CENTER | wx.RIGHT, 15)
-        buttonSizer.AddWindow(self.autoPreview, 0, wx.ALIGN_CENTER | wx.RIGHT, 5)
-        mainSizer.AddSizer(buttonSizer, 0, wx.EXPAND | wx.ALIGN_LEFT | wx.TOP, 5)
-        mainSizer.AddWindow(self.display, 1, wx.EXPAND | wx.ALL, 5)
+        buttonSizer.Add(self.preview, 0, wx.LEFT, 10)
+        buttonSizer.Add(self.go, 0, wx.LEFT, 10)
+        buttonSizer.Add(wx.Size(-1, 25), 1)
+        buttonSizer.Add(self.imgPreview, 0, wx.ALIGN_CENTER | wx.RIGHT, 5)
+        buttonSizer.Add(self.thumbSize, 0, wx.ALIGN_CENTER | wx.RIGHT, 15)
+        buttonSizer.Add(self.autoPreview, 0, wx.ALIGN_CENTER | wx.RIGHT, 5)
+        mainSizer.Add(buttonSizer, 0, wx.EXPAND | wx.ALIGN_LEFT | wx.TOP, 5)
+        mainSizer.Add(self.display, 1, wx.EXPAND | wx.ALL, 5)
         self.SetSizerAndFit(mainSizer)
 
     def __init_ctrls(self, prnt):
@@ -256,16 +256,16 @@ class MainPanel(wx.Panel):
         self.imgPreview = wx.CheckBox(id=wxID_IMGPREVIEW,
                                       label=_(u"Show image thumbnails"), name=u'imgPreview', parent=self,
                                       style=0)
-        self.imgPreview.SetToolTipString(_(u"Can slow preview considerably"))
+        self.imgPreview.SetToolTip(_(u"Can slow preview considerably"))
         self.imgPreview.SetValue(False)
         self.imgPreview.Bind(wx.EVT_CHECKBOX, self.__refresh_picker)
 
         self.thumbSize = wx.Choice(id=wxID_THUMBSIZE,
                                    choices=[u'32', u'64', u'128', u'256'],
-                                   name=u'dirsPlace', parent=self, size=wx.Size(62, -1),
+                                   name=u'dirsPlace', parent=self,  #size=wx.Size(62, -1),
                                    style=0)
         self.thumbSize.SetSelection(1)
-        self.thumbSize.SetToolTipString(_(u"Thumbnail Size"))
+        self.thumbSize.SetToolTip(_(u"Thumbnail Size"))
         self.thumbSize.Bind(wx.EVT_CHOICE, self.__set_thumb_size)
 
         if not utils.is_pil_loaded():
@@ -276,7 +276,7 @@ class MainPanel(wx.Panel):
         self.autoPreview = wx.CheckBox(id=wxID_AUTOPREVIEW,
                                        label=_(u"Automatic Preview"), name=u'autoPreview', parent=self,
                                        style=0)
-        self.autoPreview.SetToolTipString(_(u"Disable when working with many items"))
+        self.autoPreview.SetToolTip(_(u"Disable when working with many items"))
         self.autoPreview.SetValue(True)
 
     def __init__(self, prnt, MainWindow):

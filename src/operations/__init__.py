@@ -14,13 +14,13 @@
 
 """Operation definitions."""
 
-import changeLength
-import directory
-import insert
-import modification
-import move
-import replace
-import swap
+import operations.changeLength as changeLength
+import operations.directory as directory
+import operations.insert as insert
+import operations.modification as modification
+import operations.move as move
+import operations.replace as replace
+import operations.swap as swap
 #import yourModuleName
 
 
@@ -70,7 +70,7 @@ def get_internal_name(name):
 def get_translated_name(opType):
     """Get the translated operation name from the operation type."""
     type = False
-    for k, v in defs.iteritems():
+    for k, v in iter(defs.items()):
         if v[0] == opType:
             type = k
     return type

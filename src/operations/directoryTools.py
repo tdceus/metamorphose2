@@ -15,9 +15,11 @@
 import os
 import re
 
-import opButtons
+import operations.opButtons
 import utils
 import wx
+
+from operations import opButtons
 
 [wxID_PANEL, wxID_DIRECTORYTEXT, wxID_RADIOBUTTON1,
     wxID_RADIOBUTTON2, wxID_ADDCURRENT, wxID_PATHRECUR,
@@ -38,7 +40,7 @@ class Panel(wx.Panel):
         absSizer.Add(self.staticText2, 0, wx.ALIGN_CENTER | wx.LEFT, 15)
         absSizer.Add(self.pathRecur, 0, wx.ALIGN_CENTER | wx.LEFT, 5)
         absSizer.Add(self.inverse, 0, wx.ALIGN_CENTER | wx.LEFT, 10)
-        
+
         fileNameSizer = wx.BoxSizer(wx.HORIZONTAL)
         fileNameSizer.Add(self.addByFileName, 0, wx.ALIGN_CENTER)
         fileNameSizer.Add(self.useFileName, 0, wx.ALIGN_CENTER | wx.LEFT, 15)
@@ -47,7 +49,7 @@ class Panel(wx.Panel):
         superSizer = wx.BoxSizer(wx.VERTICAL)
         superSizer.Add(self.staticText1, 0, wx.TOP | wx.BOTTOM | wx.LEFT, 5)
         superSizer.Add(pathSizer, 0, wx.EXPAND)
-        superSizer.Add(self.staticText3, 1, wx.LEFT, 100)
+        superSizer.Add(self.staticText3, 1, wx.LEFT, 10)
         superSizer.Add((-1, 25), 0)
         superSizer.Add(self.opButtonsPanel, 0, wx.EXPAND)
         superSizer.Add((-1, 15), 0)
@@ -55,7 +57,7 @@ class Panel(wx.Panel):
         superSizer.Add((-1, 10), 0)
         superSizer.Add(fileNameSizer, 0, wx.ALL, 5)
 
-        self.SetSizerAndFit(superSizer)
+        self.SetSizerAndFit(superSizer, True)
 
     def __init_ctrls(self, prnt):
         wx.Panel.__init__(self, id=wxID_PANEL, name=u'directoryToolsPanel',
@@ -69,7 +71,7 @@ class Panel(wx.Panel):
 
         self.browse = wx.Button(id=wxID_BROWSE, label=_(u"Browse"),
                                 name=u'browse', parent=self, style=0)
-        self.browse.SetToolTipString(_(u"Browse for path"))
+        self.browse.SetToolTip(_(u"Browse for path"))
         self.browse.Bind(wx.EVT_BUTTON, self.browse_for_dir,
                          id=wxID_BROWSE)
 
@@ -84,21 +86,21 @@ class Panel(wx.Panel):
         self.addCurrent = wx.Button(id=wxID_ADDCURRENT,
                                     label=_(u"Copy Path Structure"), name=u'addCurrent', parent=self,
                                     style=0)
-        self.addCurrent.SetToolTipString(_(u"For best results, use with absolute paths."))
+        self.addCurrent.SetToolTip(_(u"For best results, use with absolute paths."))
         self.addCurrent.Bind(wx.EVT_BUTTON, self.on_add_current_button,
                              id=wxID_ADDCURRENT)
 
         self.staticText2 = wx.StaticText(id=-1, label=_(u"Path depth to copy:"),
                                          name='staticText2', parent=self, style=0)
 
-        self.staticText3 = wx.StaticText(id=-1, label=_(u""), name='staticText3',
+        self.staticText3 = wx.StaticText(id=-1, label=_(u" "), name='staticText3',  # Size of blank string is huge
                                          parent=self, style=0)
 
         self.pathRecur = wx.SpinCtrl(id=wxID_PATHRECUR, initial=1, max=255,
-                                     min=-255, name=u'pathRecur', parent=self, size=wx.Size(65, -1),
+                                     min=-255, name=u'pathRecur', parent=self, # size=wx.Size(65, -1),
                                      style=wx.SP_ARROW_KEYS | wx.TE_PROCESS_ENTER, value='1')
         self.pathRecur.SetValue(1)
-        self.pathRecur.SetToolTipString(_(u"Negative values allowed"))
+        self.pathRecur.SetToolTip(_(u"Negative values allowed"))
         self.pathRecur.Bind(wx.EVT_TEXT_ENTER, main.show_preview,
                             id=wxID_PATHRECUR)
         self.pathRecur.Bind(wx.EVT_SPINCTRL, main.show_preview,
@@ -106,26 +108,26 @@ class Panel(wx.Panel):
 
         self.inverse = wx.CheckBox(id=wxID_INVERSE, label=_(u"inverse"),
                                    name=u'inverse', parent=self, style=0)
-        self.inverse.SetToolTipString(_(u"Start from begining or end of path"))
+        self.inverse.SetToolTip(_(u"Start from begining or end of path"))
         self.inverse.SetValue(False)
         self.inverse.Bind(wx.EVT_CHECKBOX, main.show_preview)
 
         self.addByFileName = wx.Button(id=wxID_ADDBYFILENAME,
                                        label=_(u"Copy File Name"), name=u'addByFileName', parent=self,
                                        style=0)
-        self.addByFileName.SetToolTipString(_(u"Add a directory with the same name as the file."))
+        self.addByFileName.SetToolTip(_(u"Add a directory with the same name as the file."))
         self.addByFileName.Bind(wx.EVT_BUTTON, self.on_add_by_filename_button,
                                 id=wxID_ADDBYFILENAME)
 
         self.useFileName = wx.CheckBox(id=wxID_USEFILENAME, label=_(u"Name"),
                                        name=u'inverse', parent=self, style=0)
-        self.useFileName.SetToolTipString(_(u"Add the file name"))
+        self.useFileName.SetToolTip(_(u"Add the file name"))
         self.useFileName.SetValue(True)
         self.useFileName.Bind(wx.EVT_CHECKBOX, main.show_preview)
 
         self.useFileExt = wx.CheckBox(id=wxID_USEFILEEXT, label=_(u"Extension"),
                                       name=u'useFileExt', parent=self, style=0)
-        self.useFileExt.SetToolTipString(_(u"Add the file extension"))
+        self.useFileExt.SetToolTip(_(u"Add the file extension"))
         self.useFileExt.SetValue(False)
         self.useFileExt.Bind(wx.EVT_CHECKBOX, main.show_preview)
 

@@ -1,3 +1,51 @@
+metamorphose2 (0.9.0~beta-1sav0) xenial; urgency=medium
+
+  * debian/
+    - patches: remove unused makefile doc patch and patches/series comment
+      + add header info (from/date/summary) to Python locale error patch
+    - control
+      + set myself as maintainer, big thanks to Ianaré Sévi for the software
+        (in response to issues on his Metamorphose2 project on Github he has
+        stated he does not have time to continue maintaining metamorphose2)
+      + change homepage to reflect this package is now from a forked version
+      + Depends: add python-pil as alternative to python-imaging (for Bionic)
+    - copyright: converted previous version to Debian machine-readable format
+  * Change upstream version to that shown by Metamorphose2 (ie. Help/About)
+
+ -- Rob Savoury <savourytech@use.startmail.com>  Tue, 27 Aug 2019 15:16:26 -0700
+
+metamorphose2 (0.8.4+git20160722-1~webupd8~xenial4.1) xenial; urgency=medium
+
+  * Fix issue 16 (https://github.com/metamorphose/metamorphose2/issues/16):
+    - debian/patches/locale-error-python-2.patch
+
+ -- Rob Savoury <savourytech@use.startmail.com>  Sun, 18 Aug 2019 18:02:18 -0700
+
+metamorphose2 (0.8.4+git20160722-1~webupd8~xenial4) xenial; urgency=medium
+
+  * Use latest Git to get it to work properly with wxgtk3.0
+  * Enable run-with-wxpython3.patch
+  * Depend on python-wxgtk3.0 instead of python-wxgtk2.8
+  * Disable fix-makefile-doc-install.patch, no longer required
+
+ -- Alin Andrei <webupd8@gmail.com>  Wed, 25 Jan 2017 14:37:19 +0200
+
+metamorphose2 (0.8.4-1~webupd8~2~xenial) xenial; urgency=medium
+
+  * Depend on python-wxgtk3.0
+  * Patch desktop file to run with wxPython3
+  * Bump standards-version to 3.9.7
+
+ -- Alin Andrei <webupd8@gmail.com>  Mon, 15 Aug 2016 12:39:21 +0200
+
+metamorphose2 (0.8.4-1~webupd8~1) wily; urgency=medium
+
+  * New upstream release
+  * Depend on python-exif (>=2.1.1)
+  * Bump python-mutagen requirement to >=1.20
+
+ -- Alin Andrei <webupd8@gmail.com>  Tue, 23 Feb 2016 14:02:41 +0200
+
 metamorphose2 (0.8.2-1) unstable; urgency=low
 
   * Fix bug folder periods (ticket 3148632).

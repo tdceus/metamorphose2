@@ -18,7 +18,7 @@ Preview generator.
 Takes user settings and generates new names based on them.
 """
 
-from __future__ import print_function
+#from __future__ import print_function
 import os
 import re
 import time
@@ -30,7 +30,7 @@ import classes
 # preview generator, should not be accessed directly
 class Core():
     def __init__(self, MainWindow):
-        app.debug_print("loading renamer preview");
+        app.debug_print("loading renamer preview")
         global main
         main = MainWindow
         self.setup()
@@ -43,7 +43,8 @@ class Core():
         def getActive(x):
             if x.IsEnabled():
                 return x
-        return filter(getActive, main.renamer.operations)
+        thisFilter = filter(getActive, main.renamer.operations)
+        return list(thisFilter)
 
     def addStatus(self, x):
         """Add renamed status."""
@@ -57,7 +58,7 @@ class Core():
         if len(main.bad) == 0 and len(main.warn) == 0:
             if not app.REmsg:
                 main.set_status_msg(_(u"Previewed %s items with no errors")\
-                                    % len(main.toRename), u'complete')
+                                    % len(list(main.toRename)), u'complete')
         # problems:
         else:
             main.errors.show()
@@ -103,7 +104,7 @@ class Core():
                 break
 
         self.items_ren = map(self.addStatus, self.items_ren)
-        main.toRename = zip(main.items, self.items_ren)
+        main.toRename = list(zip(main.items, self.items_ren))
 
         progressDialog.destroy()
 
@@ -129,7 +130,7 @@ class Core():
         #------------ ERRORS: ---------------#
 
         # remove os-specific path separator
-        renamedItem = renamedItem.replace(unicode(os.sep), '')
+        renamedItem = renamedItem.replace((os.sep), '')
 
         # remove or flag invalid characters (depends on user settings)
         if self.prefs.get(u'useWinChars'):
@@ -209,7 +210,7 @@ class Core():
 
         if main.items == u'config_load':
             run = False
-        if len(operations) == 0:
+        if len(list(operations)) == 0:
             run = False
 
         if run:
@@ -217,12 +218,12 @@ class Core():
             main.items = main.picker.return_sorted()
             if main.items == []:
                 self.stopPreview()
-            # generate preview
+                # generate preview
             else:
                 for operation in operations:
                     if hasattr(operation, 'reset_counter'):
                         operation.reset_counter(0)
-                self.run(operations)
+                        self.run(list(operations))
         else:
             self.stopPreview()
 
@@ -256,7 +257,7 @@ class Core():
             return os.path.splitext(item)
 
         def join(newPath, renamedItem):
-            return unicode(os.path.join(newPath, renamedItem))
+            return (os.path.join(newPath, renamedItem))
 
         # test for numbering panel
         hasNumbering = False
@@ -342,13 +343,13 @@ class Core():
         items_ren = map(self.addStatus, self.items_ren)
 
         # make new dict with original and renamed files:
-        main.toRename = zip(main.items, items_ren)
+        main.toRename = list(zip(main.items, items_ren))
         del items_ren
 
         main.menuFile.SaveLog.Enable(True)
 
         # output time taken if set
         if app.showTimes:
-            print("%s items preview : %s" % (len(main.toRename), (time.time() - t)))
+            print("%s items preview : %s" % (len(list(main.toRename)), (time.time() - t)))
 
         self.setStatusMessage()

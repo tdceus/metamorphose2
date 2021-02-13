@@ -12,8 +12,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-import opButtons
-import search
+import operations.opButtons as opButtons
+import operations.search as search
 import wx
 
 [wxID_PANEL, wxID_PANELREPL_TXT, wxID_PANELSTATICTEXT1, wxID_PANELSTATICBOX1
@@ -22,7 +22,7 @@ import wx
 
 class Panel(wx.Panel):
     """This is the panel in charge of replacing matches with text or operations."""
-    
+
     def __init_sizer(self):
         mainSizer = self.mainSizer = wx.BoxSizer(wx.VERTICAL)
 
@@ -31,18 +31,18 @@ class Panel(wx.Panel):
         bottomSizer.Add(self.repl_txt, 1, wx.LEFT | wx.RIGHT, 5)
 
         replaceWithSizer = wx.StaticBoxSizer(self.staticBox1, wx.VERTICAL)
-        replaceWithSizer.AddSizer(bottomSizer, 0, wx.EXPAND | wx.TOP, 5)
+        replaceWithSizer.Add(bottomSizer, 0, wx.EXPAND | wx.TOP, 5)
         replaceWithSizer.Add(self.opButtonsPanel, 0, wx.EXPAND | wx.TOP | wx.BOTTOM, 2)
 
         mainSizer.Add(self.search, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, 5)
-        mainSizer.AddSpacer((1, 5))
-        mainSizer.AddSizer(replaceWithSizer, 0, wx.EXPAND | wx.ALL, 5)
+        mainSizer.Add(wx.Size(1, 5))
+        mainSizer.Add(replaceWithSizer, 0, wx.EXPAND | wx.ALL, 5)
         self.SetSizerAndFit(mainSizer)
 
     def __init_ctrls(self, prnt):
         wx.Panel.__init__(self, id=wxID_PANEL, name=u'replaceToolsPanel', parent=prnt,
                           style=wx.TAB_TRAVERSAL)
-              
+
         self.search = search.Panel(self, main, _(u"Search for what to replace, by:"))
 
         self.staticBox1 = wx.StaticBox(id=wxID_PANELSTATICBOX1,
@@ -61,7 +61,7 @@ class Panel(wx.Panel):
         self.repl_txt = wx.TextCtrl(id=wxID_PANELREPL_TXT,
                                     name=u'repl_txt', parent=self,
                                     style=wx.TE_PROCESS_ENTER, value=u'')
-        self.repl_txt.SetToolTipString(_(u"Keep blank to delete."))
+        self.repl_txt.SetToolTip(_(u"Keep blank to delete."))
         self.repl_txt.Bind(wx.EVT_TEXT, main.show_preview)
         self.repl_txt.Bind(wx.EVT_TEXT_ENTER, main.show_preview)
 

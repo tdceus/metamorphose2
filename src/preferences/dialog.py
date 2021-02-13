@@ -12,15 +12,15 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-from __future__ import print_function
-import logging
+#from __future__ import print_function
+import preferences.logging as logging
 
 import app
-import automation
-import colors
-import display
-import errorCheck
-import general
+import preferences.automation as automation
+import preferences.colors as colors
+import preferences.display as display
+import preferences.errorCheck as errorCheck
+import preferences.general as general
 import utils
 import wx
 
@@ -51,14 +51,15 @@ class Notebook(wx.Toolbook):
                   )
         i = 0
         for pane in panels:
-            page = getattr(pane[0], 'Panel')
-            page = page(self)
-            self.AddPage(page, pane[1], imageId=pane[2])
-            notebookPage = self.GetPage(i)
-            parent.load_prefs(notebookPage)
-            if hasattr(notebookPage, 'init_enabled'):
-                notebookPage.init_enabled()
-            i += 1
+            if hasattr(pane[0], 'Panel'):
+                page = getattr(pane[0], 'Panel')
+                page = page(self)
+                self.AddPage(page, pane[1], imageId=pane[2])
+                notebookPage = self.GetPage(i)
+                parent.load_prefs(notebookPage)
+                if hasattr(notebookPage, 'init_enabled'):
+                    notebookPage.init_enabled()
+                i += 1
 
 
 class Dialog(wx.Dialog):
@@ -66,16 +67,16 @@ class Dialog(wx.Dialog):
     Preferences dialog.
     """
     def __init_mainsizer_items(self, parent):
-        parent.AddWindow(self.notebook, 1, border=5,
+        parent.Add(self.notebook, 1, border=5,
                          flag=wx.ALL | wx.EXPAND)
-        parent.AddSizer(self.buttons, 0, border=5, flag=wx.ALL | wx.EXPAND)
+        parent.Add(self.buttons, 0, border=5, flag=wx.ALL | wx.EXPAND)
 
     def __init_buttons_items(self, parent):
-        parent.AddSpacer((110, -1), 0, border=0, flag=0)
-        parent.AddWindow(self.apply, 0, border=25, flag=wx.RIGHT)
-        parent.AddWindow(self.ok, 0, border=108, flag=wx.RIGHT)
-        parent.AddSpacer((10, -1), 1, border=0, flag=0)
-        parent.AddWindow(self.close, 0, border=0, flag=0)
+        parent.AddSpacer(110)
+        parent.Add(self.apply, 0, border=25, flag=wx.RIGHT)
+        parent.Add(self.ok, 0, border=108, flag=wx.RIGHT)
+        parent.AddSpacer(10)
+        parent.Add(self.close, 0, border=0, flag=0)
 
     def __init_sizers(self):
         self.mainSizer = wx.BoxSizer(orient=wx.VERTICAL)
@@ -164,11 +165,11 @@ class Dialog(wx.Dialog):
                     or isinstance(child, wx.SpinCtrl):
                         child.SetValue(v)
                 elif isinstance(child, wx.ComboBox) or isinstance(child, wx.TextCtrl):
-                    child.SetValue(unicode(v))
+                    child.SetValue(v)
                 elif isinstance(child, wx.Choice):
                     child.SetSelection(v)
                 elif isinstance(child, wx.DirPickerCtrl) or isinstance(child, wx.FilePickerCtrl):
-                    child.SetPath(unicode(v))
+                    child.SetPath(v)
                 elif isinstance(child, wx.ColourPickerCtrl):
                     child.SetColour(v)
 

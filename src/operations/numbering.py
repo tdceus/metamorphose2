@@ -33,69 +33,70 @@ class Panel(wx.Panel):
     """
 
     def __init_num1_sizer(self, parent):
-        parent.AddWindow(self.digit, 0, border=0, flag=0)
-        parent.AddWindow(self.digit_pad, 0, border=0, flag=0)
-        parent.AddWindow(self.pad_char, 0, border=0, flag=0)
+        parent.Add(self.digit, 0, border=0, flag=0)
+        parent.Add(self.digit_pad, 0, border=0, flag=0)
+        parent.Add(self.pad_char, 0, border=0, flag=0)
 
     def __init_main_sizer(self, parent):
-        parent.AddSizer(self.styleSizer, 0, border=10, flag=wx.LEFT | wx.TOP)
-        parent.AddSpacer(wx.Size(30, 8), border=0, flag=0)
-        parent.AddSizer(self.countSizer, 0, border=10, flag=wx.TOP)
+        parent.Add(self.styleSizer, 0, border=10, flag=wx.LEFT | wx.TOP)
+        parent.Add(wx.Size(30, 8), border=0, flag=0)
+        parent.Add(self.countSizer, 0, border=10, flag=wx.TOP)
 
     def __init_style_sizer(self, parent):
-        parent.AddSizer(self.num1Sizer, 0, border=8, flag=wx.TOP | wx.LEFT)
-        parent.AddSpacer(wx.Size(8, 5), border=0, flag=0)
-        parent.AddWindow(self.digit_autopad, 0, border=24, flag=wx.LEFT)
-        parent.AddSpacer(wx.Size(8, 5), border=0, flag=0)
-        parent.AddSizer(self.num2Sizer, 0, border=24, flag=wx.LEFT)
-        parent.AddSpacer(wx.Size(8, 10), border=0, flag=wx.TOP)
-        parent.AddSizer(self.alpha1Sizer, 0, border=8, flag=wx.TOP | wx.LEFT)
-        parent.AddSpacer(wx.Size(8, 5), border=0, flag=0)
-        parent.AddWindow(self.alphaPad, 0, border=24, flag=wx.LEFT)
-        parent.AddSpacer(wx.Size(8, 10), border=0, flag=0)
-        parent.AddSizer(self.romanSizer, 0, border=10, flag=wx.ALL)
+        parent.Add(self.num1Sizer, 0, border=8, flag=wx.TOP | wx.LEFT)
+        parent.Add(wx.Size(8, 5), border=0, flag=0)
+        parent.Add(self.digit_autopad, 0, border=24, flag=wx.LEFT)
+        parent.Add(wx.Size(8, 5), border=0, flag=0)
+        parent.Add(self.num2Sizer, 0, border=24, flag=wx.LEFT)
+        parent.Add(wx.Size(8, 10), border=0, flag=wx.TOP)
+        parent.Add(self.alpha1Sizer, 0, border=8, flag=wx.TOP | wx.LEFT)
+        parent.Add(wx.Size(8, 5), border=0, flag=0)
+        parent.Add(self.alphaPad, 0, border=24, flag=wx.LEFT)
+        parent.Add(wx.Size(8, 10), border=0, flag=0)
+        parent.Add(self.romanSizer, 0, border=10, flag=wx.ALL)
 
     def __init_resetby_sizer(self, parent):
-        parent.AddWindow(self.resetDir, 0, border=0, flag=0)
-        parent.AddWindow(self.incrementOnDiff, 0, border=2, flag=wx.BOTTOM)
+        parent.Add(self.resetDir, 0, border=0, flag=0)
+        parent.Add(self.incrementOnDiff, 0, border=2, flag=wx.BOTTOM)
 
 
     def __init_num2_sizer(self, parent):
-        parent.AddWindow(self.digitSetpad, 0, border=0, flag=0)
-        parent.AddWindow(self.padWidth, 0, border=0, flag=0)
+        parent.Add(self.digitSetpad, 0, border=0, flag=0)
+        parent.Add(self.padWidth, 0, border=0, flag=0)
+        parent.Add(wx.Size(5, -1))
 
     def __init_alpha1_sizer(self, parent):
-        parent.AddWindow(self.alpha, 0, border=0, flag=0)
-        parent.AddWindow(self.alphaUc, 0, border=0, flag=0)
+        parent.Add(self.alpha, 0, border=0, flag=0)
+        parent.Add(self.alphaUc, 0, border=0, flag=0)
 
     def __init_count_sizer(self, parent):
-        parent.AddSizer(self.countOpSizer, 0, border=8, flag=wx.ALL)
+        parent.Add(self.countOpSizer, 0, border=8, flag=wx.ALL)
 
     def __init_countop_sizer(self, parent):
-        parent.AddWindow(self.staticText5, 0, border=0,
+        parent.Add(self.staticText5, 0, border=0,
                          flag=wx.ALIGN_CENTER_VERTICAL)
-        parent.AddWindow(self.start, 0, border=0, flag=0)
-        parent.AddWindow(self.startByItems, 0, border=0, flag=0)
-        parent.AddWindow(self.staticText6, 0, border=0,
+        parent.Add(self.start, 0, border=0, flag=0)
+        parent.Add(self.startByItems, 0, border=0, flag=0)
+        parent.Add(self.staticText6, 0, border=0,
                          flag=wx.ALIGN_CENTER_VERTICAL)
-        parent.AddWindow(self.asc, 0, border=0, flag=wx.ALIGN_CENTER_VERTICAL)
-        parent.AddWindow(self.desc, 0, border=0, flag=wx.ALIGN_CENTER_VERTICAL)
-        parent.AddWindow(self.staticText7, 0, border=0,
+        parent.Add(self.asc, 0, border=0, flag=wx.ALIGN_CENTER_VERTICAL)
+        parent.Add(self.desc, 0, border=0, flag=wx.ALIGN_CENTER_VERTICAL)
+        parent.Add(self.staticText7, 0, border=0,
                          flag=wx.ALIGN_CENTER_VERTICAL)
-        parent.AddWindow(self.step, 0, border=0, flag=0)
-        parent.AddWindow(self.countByDir, 0, border=5, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL)
-        parent.AddWindow(self.staticText3, 0, border=0,
+        parent.Add(self.step, 0, border=0, flag=0)
+        parent.Add(self.countByDir, 0, border=5, flag=wx.LEFT | wx.ALIGN_CENTER_VERTICAL)
+        parent.Add(self.staticText3, 0, border=0,
                          flag=wx.ALIGN_CENTER_VERTICAL)
-        parent.AddWindow(self.repeat, 0, border=0, flag=0)
-        parent.AddSpacer(wx.Size(8, 8), border=0, flag=0)
-        parent.AddWindow(self.staticText1, 0, border=0,
+        parent.Add(self.repeat, 0, border=0, flag=0)
+        parent.Add(wx.Size(8, 8), border=0, flag=0)
+        parent.Add(self.staticText1, 0, border=0,
                          flag=wx.ALIGN_CENTER_VERTICAL)
-        parent.AddWindow(self.reset, 0, border=0, flag=wx.ALIGN_CENTER_VERTICAL)
-        parent.AddSizer(self.resetBySizer, 0, border=5, flag=wx.RIGHT | wx.LEFT)
+        parent.Add(self.reset, 0, border=0, flag=wx.ALIGN_CENTER_VERTICAL)
+        parent.Add(self.resetBySizer, 0, border=5, flag=wx.RIGHT | wx.LEFT)
 
     def __init_roman_sizer(self, parent):
-        parent.AddWindow(self.roman, 0, border=0, flag=0)
-        parent.AddWindow(self.roman_uc, 0, border=0, flag=0)
+        parent.Add(self.roman, 0, border=0, flag=0)
+        parent.Add(self.roman_uc, 0, border=0, flag=0)
 
     def __init_sizers(self):
         self.mainSizer = wx.BoxSizer(orient=wx.HORIZONTAL)
@@ -140,14 +141,14 @@ class Panel(wx.Panel):
                                     label=_(u"Alphabetical:"), name=u'alpha', parent=self, style=0)
         self.alpha.SetValue(False)
         self.alpha.Enable(True)
-        self.alpha.SetToolTipString(_(u"Must start at positive value: (1=a, 28=ab, etc..)"))
+        self.alpha.SetToolTip(_(u"Must start at positive value: (1=a, 28=ab, etc..)"))
         self.alpha.Bind(wx.EVT_RADIOBUTTON, self._check_styles)
 
         self.roman = wx.RadioButton(id=wxID_PANELROMAN,
                                     label=_(u"Roman Numeral:"), name=u'roman', parent=self, style=0)
         self.roman.SetValue(False)
         self.roman.Enable(True)
-        self.roman.SetToolTipString(_(u"Count must be between 1 and 4999"))
+        self.roman.SetToolTip(_(u"Count must be between 1 and 4999"))
         self.roman.Bind(wx.EVT_RADIOBUTTON, self._check_styles)
 
         self.digit_pad = wx.CheckBox(id=wxID_PANELDIGIT_PAD,
@@ -189,7 +190,7 @@ class Panel(wx.Panel):
         self.alphaUc.Bind(wx.EVT_CHECKBOX, self._check_styles)
 
         self.padWidth = wx.SpinCtrl(id=wxID_PANELPAD_WIDTH, initial=3, max=255,
-                                    min=1, name=u'padWidth', parent=self, size=wx.Size(60, -1),
+                                    min=1, name=u'padWidth', parent=self, size=wx.DefaultSize,  # (60, -1),
                                     style=wx.SP_ARROW_KEYS | wx.TE_PROCESS_ENTER, value='3')
         self.padWidth.SetValue(3)
         self.padWidth.Enable(False)
@@ -207,47 +208,46 @@ class Panel(wx.Panel):
                                          label=_(u"Start at:"), name=u'staticText5', parent=self,
                                          style=0)
 
-        self.step = wx.SpinCtrl(id=wxID_PANELSTEP, initial=1, max=10000000,
-                                min=1, name=u'step', parent=self, size=wx.Size(70, -1),
+        self.step = wx.SpinCtrl(id=wxID_PANELSTEP, initial=1, max=100000000,
+                                min=1, name=u'step', parent=self,  size=wx.DefaultSize,  # .Size(70, -1),
                                 style=wx.SP_ARROW_KEYS, value='1')
         self.step.SetValue(1)
-        self.step.SetToolTipString(_(u"Step size"))
+        self.step.SetToolTip(_(u"Step size"))
         self.step.Bind(wx.EVT_TEXT_ENTER, main.show_preview)
         self.step.Bind(wx.EVT_SPINCTRL, main.show_preview)
 
         self.countByDir = wx.CheckBox(id=wxID_PANELCOUNTBYDIR,
                                       label=_(u"By directory"), name=u'countByDir', parent=self,
                                       style=0)
-        self.countByDir.SetToolTipString(_(u"Only change count when directory changes"))
+        self.countByDir.SetToolTip(_(u"Only change count when directory changes"))
         self.countByDir.SetValue(False)
         self.countByDir.Bind(wx.EVT_CHECKBOX, main.show_preview)
 
         self.staticText7 = wx.StaticText(id=wxID_PANELSTATICTEXT7,
                                          label=_(u"Count by:"), name=u'staticText7', parent=self, style=0)
 
-        self.asc = wx.RadioButton(id=wxID_PANELASC, label=_(u"+"), name=u'asc',
+        self.asc = wx.RadioButton(id=wxID_PANELASC, label=_(u"Asc"), name=u'asc',
                                   parent=self, style=wx.RB_GROUP)
-        self.asc.SetFont(wx.Font(17, wx.SWISS, wx.NORMAL, wx.BOLD, False))
+        #self.asc.SetFont(wx.Font(17, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False))
         self.asc.SetValue(True)
-        self.asc.SetToolTipString(_(u"Increase counting number"))
+        self.asc.SetToolTip(_(u"Increase counting number"))
         self.asc.Bind(wx.EVT_RADIOBUTTON, main.show_preview)
 
-        self.desc = wx.RadioButton(id=wxID_PANELDESC, label=_(u"-"),
+        self.desc = wx.RadioButton(id=wxID_PANELDESC, label=_(u"Desc"),
                                    name=u'desc', parent=self, style=0)
-        self.desc.SetFont(wx.Font(15, wx.SWISS, wx.NORMAL, wx.BOLD, False,
-                          u'Impact'))
+        #self.desc.SetFont(wx.Font(15, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False))
         self.desc.SetValue(False)
-        self.desc.SetToolTipString(_(u"Decrease counting number"))
+        self.desc.SetToolTip(_(u"Decrease counting number"))
         self.desc.Bind(wx.EVT_RADIOBUTTON, main.show_preview)
 
         self.staticText6 = wx.StaticText(id=wxID_PANELSTATICTEXT6,
                                          label=_(u"Count:"), name=u'staticText6', parent=self, style=0)
 
         self.start = wx.SpinCtrl(id=wxID_PANELSTART, initial=0, max=100000000,
-                                 min=0, name=u'start', parent=self, size=wx.Size(70, -1),
+                                 min=0, name=u'start', parent=self, size=wx.DefaultSize,  # (70, -1),
                                  style=wx.SP_ARROW_KEYS)
         self.start.SetValue(1)
-        self.start.SetToolTipString(_(u"Starting value"))
+        self.start.SetToolTip(_(u"Starting value"))
         self.start.Bind(wx.EVT_TEXT_ENTER, main.show_preview, id=wxID_PANELSTART)
         self.start.Bind(wx.EVT_SPINCTRL, main.show_preview, id=wxID_PANELSTART)
 
@@ -255,7 +255,7 @@ class Panel(wx.Panel):
                                         label=_(u"Number of items"), name=u'startByItems', parent=self,
                                         style=0)
         self.startByItems.SetValue(False)
-        self.startByItems.SetToolTipString(_(u"Use the number of items as the start value"))
+        self.startByItems.SetToolTip(_(u"Use the number of items as the start value"))
         self.startByItems.Bind(wx.EVT_CHECKBOX, self._on_startbyitems_checkbox,
                                id=wxID_PANELSTARTBYITEMS)
 
@@ -264,10 +264,10 @@ class Panel(wx.Panel):
                                          style=0)
 
         self.reset = wx.SpinCtrl(id=wxID_PANELRESET, initial=0, max=100000000,
-                                 min=1, name=u'reset', parent=self, size=wx.Size(70, -1),
+                                 min=1, name=u'reset', parent=self, size=wx.DefaultSize,  # (70, -1),
                                  style=wx.SP_ARROW_KEYS, value='0')
         self.reset.SetValue(1)
-        self.reset.SetToolTipString(_(u"1 = don't reset"))
+        self.reset.SetToolTip(_(u"1 = don't reset"))
         self.reset.SetRange(1, 100000000)
         self.reset.Bind(wx.EVT_TEXT_ENTER, main.show_preview, id=wxID_PANELRESET)
         self.reset.Bind(wx.EVT_SPINCTRL, main.show_preview, id=wxID_PANELRESET)
@@ -275,14 +275,14 @@ class Panel(wx.Panel):
         self.resetDir = wx.CheckBox(id=wxID_PANELRESETDIR,
                                     label=_(u"Directory"), name=u'resetDir', parent=self,
                                     style=0)
-        self.resetDir.SetToolTipString(_(u"Reset count when directory changes"))
+        self.resetDir.SetToolTip(_(u"Reset count when directory changes"))
         self.resetDir.SetValue(False)
         self.resetDir.Bind(wx.EVT_CHECKBOX, main.show_preview)
 
         self.incrementOnDiff = wx.CheckBox(id=wxID_PANELRINCREMENTONDIFF,
                                            label=_(u"Name change"), name=u'incrementOnDiff', parent=self,
                                            style=0)
-        self.incrementOnDiff.SetToolTipString(_(u"MUST be in LAST operation in stack !!"))
+        self.incrementOnDiff.SetToolTip(_(u"MUST be in LAST operation in stack !!"))
         self.incrementOnDiff.SetValue(False)
         self.incrementOnDiff.Bind(wx.EVT_CHECKBOX, main.show_preview)
 
@@ -291,10 +291,10 @@ class Panel(wx.Panel):
                                          style=0)
 
         self.repeat = wx.SpinCtrl(id=wxID_PANELREPEAT, initial=1, max=100000000,
-                                  min=1, name=u'reset', parent=self, size=wx.Size(70, -1),
+                                  min=1, name=u'reset', parent=self, size=wx.DefaultSize,  # (70, -1),
                                   style=wx.SP_ARROW_KEYS, value='1')
         self.repeat.SetValue(1)
-        self.repeat.SetToolTipString(_(u"1 = don't repeat"))
+        self.repeat.SetToolTip(_(u"1 = don't repeat"))
         self.repeat.SetRange(1, 100000000)
         self.repeat.Bind(wx.EVT_TEXT_ENTER, main.show_preview,
                          id=wxID_PANELREPEAT)
