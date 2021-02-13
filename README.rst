@@ -2,6 +2,19 @@
 Métamorphose 2
 **************
 
+=====================
+NOTE ON ALPHA VERSION
+=====================
+
+  Due the creator of Métamorphose Ianaré Sévi no longer having time to maintain it, and the
+  end of life of Python 2, this forked version has been created to enable it's continued use
+  in the future.  Huge thanks to Ianaré for writing the software and maintaining it while he
+  had time!
+
+  This version is for use with Python 3 and wxPython 4 only.  It is not compatible with
+  earlier versions of Python or wxPython.
+
+
 Métamorphose is a graphical mass renaming program for files and folders.
 
 These are the command line options::
@@ -20,7 +33,6 @@ These are the command line options::
                       en_US
                       fr
                       es
-  -w=, --wxversion  Specify wxPython Version - use at your own risk!
 
 If no other options are given, you may specify a path to open::
 
@@ -51,8 +63,8 @@ Submodules are used, so after cloning don't forget to check them out::
 Requirements
 ============
 
-- Python 2.6 or 2.7 (*not* compatible with 3.x)
-- wxPython 2.8 (preferred) or 3.0
+- Python 3 (*not* compatible with 2.*)
+- wxPython 4 (*not compatible with 2.* or 3.*)
 - Python Imaging Library (PIL) 1.1.6 or greater **or** Pillow 2.3.0 or greater
 
 

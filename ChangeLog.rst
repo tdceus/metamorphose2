@@ -2,6 +2,25 @@
 Métamorphose2 Changelog
 ***********************
 
+2.0.9.1 alpha ...
+=================
+**2021-02-13**
+
+This is a first attempt to port to Python3 and wxPython4.  There
+are no functional changes included in this release.
+
+Changes:
+  - Update from Python2 to Python3
+  - Moved to wxPython 4
+  - Removed references to wxversion
+  - Updated exif and mutagen to latest version
+  - removed CLI option to specify wx version
+
+This is tested on Debian Bullseye only as I don't have access to
+Windows or Mac, however apart from the above changed.  Build and install
+however procedures should not have changed apart from installing the newer
+wxPython.
+
 2.0.8.4 beta
 ============
 **2015-08-11**
