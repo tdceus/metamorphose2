@@ -12,7 +12,9 @@ NOTE ON ALPHA VERSION
   had time!
 
   This version is for use with Python 3 and wxPython 4 only.  It is not compatible with
-  earlier versions of Python or wxPython.
+  earlier versions of Python or wxPython.  I am sharing it here in the hope that it may be
+  of use to others, and that someone more proficient in GitHub, Python etc may be able to
+  adopt, adapt or assist in keeping it available going forward.
 
 
 Métamorphose is a graphical mass renaming program for files and folders.
