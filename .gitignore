@@ -67,3 +67,5 @@ nbproject/
 Session.vim
 .netrwhist
 *~
+# Quilt
+.pc/
