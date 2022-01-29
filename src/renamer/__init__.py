@@ -13,10 +13,10 @@
 # GNU General Public License for more details.
 
 import app
-import renamer.engine
+from . import engine
 import operations
-import renamer.preview
-import renamer.wxRenamerView
+from . import preview
+from . import wxRenamerView
 
 
 class Core():

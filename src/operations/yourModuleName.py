@@ -16,7 +16,7 @@
 Example Module.
 """
 
-from operation import Operation
+from .operation import Operation
 import wx
 
 [wxID_PANEL, wxID_PANELSTATICTEXT1] = [wx.NewId() for __init_ctrls in range(2)]

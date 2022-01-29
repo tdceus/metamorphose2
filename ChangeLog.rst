@@ -2,9 +2,9 @@
 Métamorphose2 Changelog
 ***********************
 
-2.0.9.1 alpha ...
+2.0.10.0 beta ...
 =================
-**2021-02-13**
+**2022-01-26**
 
 This is a first attempt to port to Python3 and wxPython4.  There
 are no functional changes included in this release.
@@ -15,6 +15,13 @@ Changes:
   - Removed references to wxversion
   - Updated exif and mutagen to latest version
   - removed CLI option to specify wx version
+  - fix layout and control sizing - particularly fonts, spin and button controls
+  - fix generating thumbnails with Pillow -> wxPython
+  - fix to drag and drop
+  - fix to saving and retrieving logs
+  - minor fix to help html files syntax
+  - update pygettext to xgettext translation tools
+  - fix to delete operation(s) choice button
 
 This is tested on Debian Bullseye only as I don't have access to
 Windows or Mac, however apart from the above changed.  Build and install

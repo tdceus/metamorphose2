@@ -20,9 +20,11 @@ Uses search panel.
 
 import sre_constants
 
-import operations.accentStrip
-from operations.operation import Operation
-import operations.search as search
+from . import accentStrip
+from .operation import Operation
+from . import search
+import app
+
 import utils
 import wx
 
@@ -156,14 +158,14 @@ class OpPanel(Operation):
         Taken from urllib standard python library.
         """
         res = s.split('%')
-        for i in xrange(1, len(res)):
+        for i in range(1, len(res)):
             item = res[i]
             try:
                 res[i] = _hextochr[item[:2]] + item[2:]
             except KeyError:
                 res[i] = '%' + item
             except UnicodeDecodeError:
-                res[i] = unichr(int(item[:2], 16)) + item[2:]
+                res[i] = chr(int(item[:2], 16)) + item[2:]
         return "".join(res)
 
     def create_operation(self, event):

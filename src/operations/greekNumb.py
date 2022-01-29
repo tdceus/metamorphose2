@@ -64,7 +64,6 @@ TODO
 
 """
 
-#from __future__ import print_function
 import math
 
 
@@ -83,7 +82,7 @@ def int2greek(number, numbersign=True, upper=False, stigma=True, arch_qoppa=Fals
     """Convert integer to Greek numeral."""
     number = str(number).lstrip('-')
     if not number.isdigit():
-        raise Error, 'Input must be an integer'
+        raise Error('Input must be an integer')
 
     if not stigma:
         greek_digits[0][6] = u'στ'

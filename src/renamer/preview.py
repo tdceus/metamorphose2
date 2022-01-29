@@ -18,7 +18,6 @@ Preview generator.
 Takes user settings and generates new names based on them.
 """
 
-#from __future__ import print_function
 import os
 import re
 import time
@@ -223,7 +222,7 @@ class Core():
                 for operation in operations:
                     if hasattr(operation, 'reset_counter'):
                         operation.reset_counter(0)
-                        self.run(list(operations))
+                self.run(list(operations))
         else:
             self.stopPreview()
 

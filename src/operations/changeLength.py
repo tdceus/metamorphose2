@@ -12,7 +12,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-from operations.operation import Operation
+from .operation import Operation
 import wx
 
 [wxID_PANEL, wxID_PANELMOD_LENGTH, wxID_PANELMOD_LENGTH_DIRECTION,

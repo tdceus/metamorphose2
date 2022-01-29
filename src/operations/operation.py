@@ -16,7 +16,6 @@ import os
 
 import wx
 
-
 class Operation(wx.Panel):
     """"
     Base class for all operations.

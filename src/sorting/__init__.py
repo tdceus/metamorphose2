@@ -25,7 +25,7 @@ import app
 from exif import EXIF
 import classes
 import utils
-import sorting.wxSortingView
+from . import wxSortingView
 
 
 class Parameters(classes.Parameters):

@@ -19,7 +19,8 @@ __date__ = "$Date: 2004/05/05 21:57:20 $"
 __copyright__ = "Copyright (c) 2001 Steve Lamm, Copyright (c) 2001 Mark Pilgrim"
 __license__ = "Python"
 
-#Define exceptions
+
+# Define exceptions
 class RomanError(Exception): pass
 class OutOfRangeError(RomanError): pass
 class NotIntegerError(RomanError): pass
@@ -60,9 +61,9 @@ def toRoman(n):
 #def fromRoman(s):
 #    """convert Roman numeral to integer"""
 #    if not s:
-#        raise InvalidRomanNumeralError, 'Input can not be blank'
-#    if not fromRomanTable.has_key(s):
-#        raise InvalidRomanNumeralError, 'Invalid Roman numeral: %s' % s
+#        raise ValueError('Input can not be blank')
+#    if not s in fromRomanTable:
+#        raise ValueError('Invalid Roman numeral: %s' % s)
 #    return fromRomanTable[s]
 
 

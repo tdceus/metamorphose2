@@ -14,15 +14,13 @@
 
 """Operation definitions."""
 
-import operations.changeLength as changeLength
-import operations.directory as directory
-import operations.insert as insert
-import operations.modification as modification
-import operations.move as move
-import operations.replace as replace
-import operations.swap as swap
-#import yourModuleName
-
+from . import changeLength
+from . import directory
+from . import insert
+from . import modification
+from . import move
+from . import replace
+from . import swap
 
 defs = {
     _(u"directory"): (

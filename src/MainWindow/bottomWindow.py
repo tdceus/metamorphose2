@@ -18,7 +18,7 @@ The bottom half of the main window.
 import os
 
 import app
-import MainWindow.editDialog
+from . import editDialog
 import utils
 import wx
 import wx.lib.buttons as buttons
@@ -118,7 +118,7 @@ class ListCtrl(wx.ListCtrl):
         self.parent.on_preview_button(False)
 
     def _remove_items_and_error_check(self, event):
-        self._remove_items()
+        self._remove_items(event)
         self.parent.renamer.error_check_items()
 
     def _manual_edit(self, event):
@@ -261,10 +261,10 @@ class MainPanel(wx.Panel):
         self.imgPreview.Bind(wx.EVT_CHECKBOX, self.__refresh_picker)
 
         self.thumbSize = wx.Choice(id=wxID_THUMBSIZE,
-                                   choices=[u'32', u'64', u'128', u'256'],
+                                   choices=[u'16', u'32', u'64', u'128', u'256'],
                                    name=u'dirsPlace', parent=self,  #size=wx.Size(62, -1),
                                    style=0)
-        self.thumbSize.SetSelection(1)
+        self.thumbSize.SetSelection(2)
         self.thumbSize.SetToolTip(_(u"Thumbnail Size"))
         self.thumbSize.Bind(wx.EVT_CHOICE, self.__set_thumb_size)
 

@@ -14,9 +14,11 @@
 
 import sre_constants
 
-from operations.notebook import Notebook
-from operations.operation import Operation
-import operations.replaceTools as replaceTools
+from .notebook import Notebook
+from .operation import Operation
+from . import replaceTools
+import app
+
 import utils
 import wx
 

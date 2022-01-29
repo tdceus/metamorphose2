@@ -15,8 +15,8 @@
 import platform
 import sys
 
-import operations.opButtons
-import operations.regExpr
+from . import opButtons
+from . import regExpr
 import wx
 
 from operations import regExpr, opButtons

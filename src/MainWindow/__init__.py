@@ -27,7 +27,7 @@ import re
 import sys
 import time
 
-import MainWindow.EnhancedStatusBar as ESB
+from . import EnhancedStatusBar as ESB
 import about
 import app
 import classes
@@ -557,7 +557,7 @@ class MainWindow(wx.Frame):
         global picker
         import picker
         global bottomWindow
-        import MainWindow.bottomWindow
+        from . import bottomWindow
 
         # initialize preferences
         app.debug_print("======== Preferences =======")

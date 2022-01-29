@@ -13,8 +13,8 @@
 # GNU General Public License for more details.
 
 
-import operations.dateTime
-import operations.numbering
+from . import dateTime
+from . import numbering
 import utils
 import wx
 

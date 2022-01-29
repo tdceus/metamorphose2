@@ -12,18 +12,17 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-#from __future__ import print_function
 import codecs
 import logging
 import os
 
 import app
-import preferences.automation
-import preferences.colors
-from preferences.dialog import Dialog
-import preferences.display
-import preferences.errorCheck
-import preferences.general
+from . import automation
+from . import colors
+from .dialog import Dialog
+from . import display
+from . import errorCheck
+from . import general
 import utils
 import sys
 import wx

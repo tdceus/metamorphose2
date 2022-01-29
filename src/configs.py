@@ -134,7 +134,7 @@ class SaveConfig():
 
         for i in range(operationList.GetItemCount()):
             type = operationList.GetItemText(i)
-            type = re.sub("\d{1,}: ", '', type)
+            type = re.sub("\d+: ", '', type)
             type = operations.defs[type][0]
             operation = operationStack[i]
             cfg += u'\t\t<operation id="%s" type="%s">\n' % (i, type)

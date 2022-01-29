@@ -15,11 +15,9 @@
 import os
 import re
 
-import operations.opButtons
 import utils
 import wx
-
-from operations import opButtons
+from . import opButtons
 
 [wxID_PANEL, wxID_DIRECTORYTEXT, wxID_RADIOBUTTON1,
     wxID_RADIOBUTTON2, wxID_ADDCURRENT, wxID_PATHRECUR,

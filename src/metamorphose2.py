@@ -28,16 +28,13 @@ collections, webmasters, programmers, legal and clerical, etc.
 This is what you should run to start the program.
 """
 
-#from __future__ import print_function
+
 import sys
 import os
 import inspect
 import platform
 from getopt import GetoptError, getopt
 import app
-
-
-#syspath = sys.path[0]
 
 if not hasattr(sys, "frozen"):
     try:
@@ -46,10 +43,11 @@ if not hasattr(sys, "frozen"):
         print("\nwxPython required!\n")
         sys.exit()
 
-instwxversion = list(map(int,wx.__version__.split(".")))[0]
+instwxversion = list(map(int, wx.__version__.split(".")))[0]
 if instwxversion < 4:
     print("\nwxPython Version 4 or above required!\n")
     sys.exit()
+
 
 def usage():
     """
@@ -81,6 +79,9 @@ def usage():
     print()
     print("If no other options are given, you may specify a path to open:")
     print("$ metamorphose2 /srv/samba/Windows Likes Spaces")
+    print()
+    print("This version of metamorphose2 is designed to run with Python3 and wxPython4 and is")
+    print("not compatible with previous versions of these packages")
     print()
     sys.exit()
 
@@ -173,6 +174,5 @@ if __name__ == '__main__':
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     sys.path.insert(0, currentdir)
 
-    cli_options = get_options()
-    main(cli_options)
-
+    cli_opts = get_options()
+    main(cli_opts)

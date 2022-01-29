@@ -2,19 +2,26 @@
 Métamorphose 2
 **************
 
-=====================
-NOTE ON ALPHA VERSION
-=====================
+======================================
+NOTE ON Python3/wxPython4 BETA VERSION
+======================================
 
-  Due the creator of Métamorphose Ianaré Sévi no longer having time to maintain it, and the
-  end of life of Python 2, this forked version has been created to enable it's continued use
-  in the future.  Huge thanks to Ianaré for writing the software and maintaining it while he
-  had time!
+    Due the creator of Métamorphose Ianaré Sévi no longer having time to
+    maintain it, and the end of life of Python 2 and wxPython2/3, this
+    forked version has been created to enable it's continued use in the
+    future. Huge thanks to Ianaré for writing the software and maintaining
+    it while he had time!
 
-  This version is for use with Python 3 and wxPython 4 only.  It is not compatible with
-  earlier versions of Python or wxPython.  I am sharing it here in the hope that it may be
-  of use to others, and that someone more proficient in GitHub, Python etc may be able to
-  adopt, adapt or assist in keeping it available going forward.
+    This branch is for use with Python 3 and wxPython 4 only. It is not
+    compatible with earlier versions of Python or wxPython. I am sharing
+    it here in the hope that it may be of use to others who can continue to
+    gain as much use out of this as I do.
+
+    There are no functional changes in this version.  The only changes are
+    to make it work with the libraries, to reflect new submodule versions
+    and changes to the translation system with the deprecation of the python
+    specific utilities, so while I am hoping that it continues to work on
+    Windows and Mac, I can only test it only on Debian Bullesye.
 
 
 Métamorphose is a graphical mass renaming program for files and folders.
@@ -55,7 +62,7 @@ Cloning
 
 Cloning the sources from the remote::
 
-  git clone https://github.com/metamorphose/metamorphose2.git
+     git clone -b Python3_WXPython4 https://github.com/timinaust/metamorphose2.git
 
 Submodules are used, so after cloning don't forget to check them out::
 
@@ -65,9 +72,9 @@ Submodules are used, so after cloning don't forget to check them out::
 Requirements
 ============
 
-- Python 3 (*not* compatible with 2.*)
-- wxPython 4 (*not compatible with 2.* or 3.*)
-- Python Imaging Library (PIL) 1.1.6 or greater **or** Pillow 2.3.0 or greater
+- Python 3 (*** not compatible with 2. ***)
+- wxPython 4 (*** not compatible with 2 or 3 ***)
+- Python Imaging Library Pillow 2.3.0 or greater
 
 
 Running
@@ -75,7 +82,7 @@ Running
 
 Create or update the language files::
 
-  messages/update_langs.sh
+    ./generate_pot.sh
 
 Launch the application::
 

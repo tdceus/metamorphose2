@@ -301,7 +301,7 @@ class Parser():
     def __get_image_tag(self, path, EXIFtags, command):
         tag = IMAGE_INFO[command]
 
-        if EXIFtags.has_key(tag):
+        if tag in EXIFtags:
             '''
             if tag == u'EXIF DateTimeOriginal':
                 print self.__get_exif_date(path, tag)
@@ -369,7 +369,7 @@ class Parser():
     def __get_audio_tag(self, audioMetadata, command):
         tag = AUDIO_INFO[command]
         path = audioMetadata.filename
-        if audioMetadata.has_key(tag):
+        if tag in audioMetadata:
             value = audioMetadata[tag][0]
             encoding = app.prefs.get('encodingSelect')
             if str(encoding) != str(locale.getlocale()[1]):

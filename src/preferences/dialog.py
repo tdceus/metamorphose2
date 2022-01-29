@@ -12,15 +12,14 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-#from __future__ import print_function
-import preferences.logging as logging
+from . import logging
 
 import app
-import preferences.automation as automation
-import preferences.colors as colors
-import preferences.display as display
-import preferences.errorCheck as errorCheck
-import preferences.general as general
+from . import automation
+from . import colors
+from . import display
+from . import errorCheck
+from . import general
 import utils
 import wx
 

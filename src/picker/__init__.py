@@ -27,7 +27,7 @@ import time
 import app
 import classes
 import utils
-import picker.wxPickerView
+from . import wxPickerView
 
 
 class Parameters(classes.Parameters):

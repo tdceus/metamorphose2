@@ -16,7 +16,6 @@
 Helper functions available throughout Metamorphose.
 """
 
-#from __future__ import print_function
 import codecs
 import locale
 import os
@@ -27,7 +26,7 @@ import wx
 import wx.html
 
 try:
-    import Image
+    from PIL import Image
 except ImportError:
     pass
 

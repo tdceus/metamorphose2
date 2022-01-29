@@ -14,6 +14,7 @@
 
 import re
 import sre_constants
+import app
 
 import wx
 

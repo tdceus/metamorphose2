@@ -12,7 +12,6 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-#from __future__ import print_function
 import codecs
 import os
 import platform
@@ -64,9 +63,9 @@ class Core():
         try:
             shutil1.move(original[0], renamed[0], True)
         except IOError as e:
-            app.debug_print("IOError : %s, %s" % (e.errNo, e.strerror))
+            app.debug_print("IOError : %s, %s" % (e.errno, e.strerror))
             # may need to create dirs first
-            if e.errNo == 2 and not os.path.exists(os.path.dirname(renamed[0])):
+            if e.errno == 2 and not os.path.exists(os.path.dirname(renamed[0])):
                 try:
                     os.makedirs(os.path.dirname(renamed[0]))
                 except OSError as e:
@@ -80,7 +79,7 @@ class Core():
         #except OSError as e:
         #    app.debug_print("OSError : %s, %s" % (e.errno, e.strerror))
         #    # don't stop for a read-only error if the renamed item exists
-        #    if not (e.errNo == 30 and os.path.exists(renamed[0])):
+        #    if not (e.errno == 30 and os.path.exists(renamed[0])):
         #        self._show_rename_error(i, e.strerror, original, renamed)
         #        return True
 

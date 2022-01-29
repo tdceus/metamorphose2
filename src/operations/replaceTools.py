@@ -12,8 +12,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-import operations.opButtons as opButtons
-import operations.search as search
+from . import opButtons
+from . import search
 import wx
 
 [wxID_PANEL, wxID_PANELREPL_TXT, wxID_PANELSTATICTEXT1, wxID_PANELSTATICBOX1

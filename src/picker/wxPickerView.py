@@ -162,13 +162,20 @@ class ItemList(wx.ListCtrl):
             self.pickerPanel.enable_buttons()
             main.show_preview(True)
     
-    def __image_to_pil(self, source, thumbSize):
+    def __image_to_pil(self, sourcefile, thumbSize):
         """Create a thumbnail from an image file."""
-        source = Image.open(source, 'r')
+        source = Image.open(sourcefile, 'r')
         source.thumbnail(thumbSize, Image.ANTIALIAS)
-        image = apply(wx.EmptyImage, source.size)
-        image.SetData(source.convert("RGB").tostring())
-        return wx.BitmapFromImage(image)
+        w, h = source.size
+        thumb = Image.new(source.mode, thumbSize, (0, 0, 0))
+        if w == h:
+            thumb = source
+        elif w > h:
+            thumb.paste(source, (0, (w - h) // 2))
+        elif w < h:
+            thumb.paste(source, ((h - w) // 2, 0))
+        image = wx.Image(thumbSize[0], thumbSize[1], thumb.convert("RGB").tobytes())
+        return image.ConvertToBitmap()
 
     def on_item_selected(self, event):
         """show selected items then add or remove from renaming list."""
@@ -225,7 +232,7 @@ class ItemList(wx.ListCtrl):
         # list folders first
         folders.sort(key=lambda x: x.lower())
         for i in range(len(folders)):
-            self.InsertImageStringItem(i, folders[i], 0)
+            self.InsertItem(i, folders[i], 0)
 
         # ... then files
         def _make_key(f): return (os.path.dirname(f), f.lower())

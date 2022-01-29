@@ -15,10 +15,12 @@
 import platform
 import sys
 
-from operations.operation import Operation
-import operations.regExpr as regExpr
-import operations.search as search
+from .operation import Operation
+from . import regExpr
+from . import search
 import utils
+import app
+
 import wx
 
 [wxID_PANEL, wxID_PANELREPL_MOVE_POS, wxID_PANELREPL_MOVE_POS_VALUE,

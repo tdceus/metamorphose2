@@ -371,7 +371,7 @@ class Panel(wx.Panel):
         self.enableOperation.Bind(wx.EVT_TOGGLEBUTTON,
                                   self.__operation_toggle_btn, id=wxID_ENABLEOPERATION)
 
-        self.deleteOperations = wx.Choice(choices=[_(u"Delete"), _(u"Delete All")],
+        self.deleteOperations = wx.Choice(choices=[_(u"Delete"), _(u"Selected"), _(u"Delete All")],
                                           id=wxID_DELETEOPERATIONS, name=u'actions', parent=self)
         self.deleteOperations.SetSelection(0)
         self.deleteOperations.SetToolTip(_(u"Delete operations"))
@@ -624,8 +624,8 @@ class Panel(wx.Panel):
     def __actions_choice(self, event):
         """Execute correct function based on user selected action."""
         selected = self.deleteOperations.GetSelection()
-        result = {0: self.delete_operation,
-                  1: self.__destroy_all_gui_operations,
+        result = {1: self.delete_operation,
+                  2: self.__destroy_all_gui_operations,
                   }[selected](event)
         self.deleteOperations.SetSelection(0)
 

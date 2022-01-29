@@ -12,9 +12,10 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-from operations.operation import Operation
-import operations.search as search
+from .operation import Operation
+from . import search
 import utils
+import app
 import wx
 
 [wxID_PANEL, wxID_PANELREPL_MOVE_POS, wxID_PANELREPL_MOVE_POS_VALUE,
