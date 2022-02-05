@@ -80,10 +80,6 @@ Requirements
 Running
 =======
 
-Create or update the language files::
-
-    ./generate_pot.sh
-
 Launch the application::
 
   ./metamorphose2

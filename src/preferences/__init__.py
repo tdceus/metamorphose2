@@ -113,6 +113,7 @@ class Methods:
         prefs = self.__read_file(prefFile)
 
         # windows-compatible?
+        win_compatible = True
         if platform.system() != 'Windows':
             win_compatible = False
         if prefs.get(u'useWinChars', win_compatible):

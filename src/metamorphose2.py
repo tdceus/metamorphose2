@@ -34,7 +34,12 @@ import os
 import inspect
 import platform
 from getopt import GetoptError, getopt
+from os.path import dirname
+
 import app
+
+# fix for exif not importing correctly when running uninstalled
+sys.path.append(dirname(__file__)+'/exif/')
 
 if not hasattr(sys, "frozen"):
     try:

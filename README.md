@@ -71,10 +71,6 @@ Submodules are used, so after cloning don\'t forget to check them out:
 
 ### Running
 
-Create or update the language files:
-
-    ./generate_pot.sh
-
 Launch the application:
 
     ./metamorphose2

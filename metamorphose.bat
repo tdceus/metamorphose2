@@ -1,1 +1,1 @@
-"C:\python3\python.exe" "src\metamorphose2.py"
+python "src\metamorphose2.py"

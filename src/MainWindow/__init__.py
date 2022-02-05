@@ -479,7 +479,7 @@ class MainWindow(wx.Frame):
 
         try:
             Lang = gettext.translation(u'metamorphose2', app.locale_path(language),
-                                       languages=[locales[language][1]])
+                                       languages=[locales[language][1]], fallback=True)
         except IOError:
             print("Could not find the translation file for '%s'." % language)
             print("Try running messages/update_langs.sh\n")
