@@ -73,7 +73,7 @@ class MySplitter(wx.SplitterWindow):
 
     def __init__(self, parent):
         wx.SplitterWindow.__init__(self, parent,
-                                   style=wx.SP_LIVE_UPDATE | wx.SP_3DSASH | wx.SP_NO_XP_THEME)
+                                   style=wx.SP_LIVE_UPDATE | wx.SP_3DSASH )
 
 
 class MainWindow(wx.Frame):
@@ -411,7 +411,7 @@ class MainWindow(wx.Frame):
         if wx.Platform == '__WXGTK__':
             split = -185
         elif wx.Platform == '__WXMSW__':
-            split = -175
+            split = -151
         else:
             split = -180
         self.splitter.SplitHorizontally(self.notebook, self.bottomWindow, split)
