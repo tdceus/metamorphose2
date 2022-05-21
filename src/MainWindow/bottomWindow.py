@@ -54,13 +54,13 @@ class ListCtrl(wx.ListCtrl):
 
     def set_preferences(self):
         prefs = app.prefs
-        self.green = wx.ItemAttr()
+        self.green = wx.ListItemAttr()
         self.green.SetBackgroundColour(prefs.get(u'renamedColor'))
-        self.lightGreen = wx.ItemAttr()
+        self.lightGreen = wx.ListItemAttr()
         self.lightGreen.SetBackgroundColour(prefs.get(u'willChangeColor'))
-        self.red = wx.ItemAttr()
+        self.red = wx.ListItemAttr()
         self.red.SetBackgroundColour(prefs.get(u'errorColor'))
-        self.yellow = wx.ItemAttr()
+        self.yellow = wx.ListItemAttr()
         self.yellow.SetBackgroundColour(prefs.get(u'warnColor'))
 
     def __init_menu(self, menu):
