@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PREFIX=/usrx
+PREFIX=/usr
 MAIN=
 
 #findPrefix
