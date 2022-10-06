@@ -19,5 +19,6 @@ if [ -d "$PREFIX/share/metamorphose2" ]
 then
   exec python3 $PREFIX/share/metamorphose2/metamorphose2.py "$@"
 else
-  exec python3 src/metamorphose2.py "$@"
+  SRC_DIR=$(dirname ${0})
+  exec python3 ${SRC_DIR}/src/metamorphose2.py "$@"
 fi
