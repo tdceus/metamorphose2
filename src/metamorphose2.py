@@ -47,7 +47,8 @@ if not hasattr(sys, "frozen"):
     except ImportError:
         print("\nwxPython required!\n")
         sys.exit()
-        
+
+# fix for non-numeric version numbers.
 instwxversion = list(map(int, wx.__version__.split(".")[0:3]))[0]
 if instwxversion < 4:
     print("\nwxPython Version 4 or above required!\n")
