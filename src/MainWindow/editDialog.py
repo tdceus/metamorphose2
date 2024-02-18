@@ -94,9 +94,9 @@ class Dialog(wx.Dialog):
 
         # the dialog should appear just above the bottom window
         self.CentreOnParent()
-        pos = self.GetPositionTuple()
+        pos = tuple(self.GetPosition())       
         newY = self.GetScreenRect().height + 50
-        self.MoveXY(pos[0], pos[1] - newY)
+        self.Move(wx.Point(pos[0],pos[1] - newY))
 
         self.load_item(item)
 

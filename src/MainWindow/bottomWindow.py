@@ -78,9 +78,10 @@ class ListCtrl(wx.ListCtrl):
         menu.removeAndPreview.SetBitmap(wx.Bitmap(utils.icon_path(u'errors.png'),
                                         wx.BITMAP_TYPE_PNG))
 
-        menu.AppendItem(menu.edit)
-        menu.AppendItem(menu.remove)
-        menu.AppendItem(menu.removeAndPreview)
+        #menu.AppendItem(menu.edit)
+        menu.Append(menu.edit)
+        menu.Append(menu.remove)
+        menu.Append(menu.removeAndPreview)
         #menu.AppendItem(parent.disable)
 
         self.Bind(wx.EVT_MENU, self._remove_items,
