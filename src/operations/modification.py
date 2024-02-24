@@ -42,7 +42,7 @@ class OpPanel(Operation):
     """
     Operation panel for modification.
     """
-
+    
     def __init_sizer(self):
         mainSizer = wx.BoxSizer(wx.VERTICAL)
         mainSizer.Add(self.search, 0, wx.EXPAND | wx.TOP, 10)
@@ -182,32 +182,37 @@ class OpPanel(Operation):
         searchValues = self.search.searchValues
 
         if searchValues[0] == u"reg-exp" and searchValues[2]:
-            isRegExp = True
+           isRegExp = True
         else:
-            isRegExp = False
+           isRegExp = False
 
         # case modifications
-        def uppercase(match):
+        def uppercase(isRegExp, match):
             if isRegExp:
                 match = match.group()
             return match.upper()
-        def lowercase(match):
+        def lowercase(isRegExp, match):
             if isRegExp:
                 match = match.group()
             return match.lower()
-        def capitalize(match):
+        def capitalize(isRegExp, match):
             if isRegExp:
                 match = match.group()
             return match.capitalize()
-        def title(match):
+        def title_loc(isRegExp, match):
             if isRegExp:
-                match = match.group()
-            return match.title()
-        def swapcase(match):
+                matchgrp1 = match.group(1)
+                titlematch = matchgrp1.title()
+                allGroups = match.group()
+                match = allGroups.replace(matchgrp1, titlematch)
+            else:
+                match = match.title()
+            return match
+        def swapcase(isRegExp, match):
             if isRegExp:
                 match = match.group()
             return match.swapcase()
-        def dorkify(match):
+        def dorkify(isRegExp, match):
             if isRegExp:
                 match = match.group()
             i = 0
@@ -222,15 +227,15 @@ class OpPanel(Operation):
             return newString
 
         # other modifications
-        def _strip_accents(match):
+        def _strip_accents(isRegExp, match):
             if isRegExp:
                 match = match.group()
             return accentStrip.full_convert(match)
-        def _url_decode(match):
+        def _url_decode(isRegExp, match):
             if isRegExp:
                 match = match.group()
             return self.__unquote(match)
-        def _to_l337(match):
+        def _to_l337(isRegExp, match):
             if isRegExp:
                 match = match.group()
             lookup = {
@@ -260,7 +265,7 @@ class OpPanel(Operation):
                 match = match.replace(char, lookup[char])
             return match
 
-        def _fix_encode(match):
+        def _fix_encode(isRegExp, match):
             if isRegExp:
                 match = match.group()
             enc = self.encodingSelect.GetStringSelection()
@@ -270,7 +275,7 @@ class OpPanel(Operation):
 
         # set possible modifications and selected operation:
         if self.caseMod.GetValue():
-            self.comds = (uppercase, lowercase, swapcase, capitalize, title, dorkify)
+            self.comds = (uppercase, lowercase, swapcase, capitalize, title_loc, dorkify)
             self.op = self.case_operation_value.GetSelection()
         elif self.otherMod.GetValue():
             self.comds = (_strip_accents, _url_decode, _to_l337, )
@@ -298,7 +303,7 @@ class OpPanel(Operation):
         # regular expression
         if isRegExp:
             try:
-                newName = searchValues[2].sub(self.comds[self.op], newName)
+                newName = searchValues[2].sub(lambda m : self.comds[self.op](isRegExp, m), newName)
             except (sre_constants.error, AttributeError) as err:
                 main.set_status_msg(_(u"Regular-Expression: %s") % err, u'warn')
                 # so we know not to change status text after RE error msg:
@@ -315,27 +320,27 @@ class OpPanel(Operation):
             if not searchValues[1]:
                 found = search.case_insensitive(newName)
                 for match in found:
-                    newName = newName.replace(match, self.comds[self.op](find))
+                    newName = newName.replace(match, self.comds[self.op](isRegExp, find))
             #case sensitive:
             else:
-                newName = newName.replace(find, self.comds[self.op](find))
+                newName = newName.replace(find, self.comds[self.op](isRegExp, find))
         # between
         elif searchValues[0] == u"between":
             positions = search.get_between_to_from(newName)
             if positions:
                 frm = positions[0]
                 to = positions[1]
-                newName = newName[:frm] + self.comds[self.op](newName[frm:to]) + newName[to:]
+                newName = newName[:frm] + self.comds[self.op](isRegExp, newName[frm:to]) + newName[to:]
         # positioning:
         elif searchValues[0] == u"position":
             ss = search.repl_from.GetValue()
             sl = search.repl_len.GetValue()
             frm, to, tail = search.get_start_end_pos(ss, sl, newName)
             # apply positioning
-            newName = newName[:frm] + self.comds[self.op](newName[frm:to]) + tail
+            newName = newName[:frm] + self.comds[self.op](isRegExp, newName[frm:to]) + tail
         #nothing set, change entire name:
         else:
-            newName = self.comds[self.op](newName)
+            newName = self.comds[self.op](isRegExp, newName)
 
         name, ext = self.split_ext(newName, name, ext)
         return path, name, ext
