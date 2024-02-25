@@ -186,6 +186,11 @@ class OpPanel(Operation):
         else:
            isRegExp = False
 
+        def regExprMatchHandler(match, op):
+            ciGrp = match.lastindex
+
+            return ""
+
         # case modifications
         def uppercase(isRegExp, match):
             if isRegExp:
@@ -195,7 +200,7 @@ class OpPanel(Operation):
             if isRegExp:
                 match = match.group()
             return match.lower()
-        def capitalize(isRegExp, match):
+        def capitalize_loc(isRegExp, match):
             if isRegExp:
                 match = match.group()
             return match.capitalize()
@@ -275,7 +280,7 @@ class OpPanel(Operation):
 
         # set possible modifications and selected operation:
         if self.caseMod.GetValue():
-            self.comds = (uppercase, lowercase, swapcase, capitalize, title_loc, dorkify)
+            self.comds = (uppercase, lowercase, swapcase, capitalize_loc, title_loc, dorkify)
             self.op = self.case_operation_value.GetSelection()
         elif self.otherMod.GetValue():
             self.comds = (_strip_accents, _url_decode, _to_l337, )
