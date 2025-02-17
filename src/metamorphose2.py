@@ -44,8 +44,9 @@ sys.path.append(dirname(__file__)+'/exif/')
 if not hasattr(sys, "frozen"):
     try:
         import wx
-    except ImportError:
+    except ImportError as e:
         print("\nwxPython required!\n")
+        print(e)
         sys.exit()
 
 # fix for non-numeric version numbers.
