@@ -80,10 +80,10 @@ sudo dnf groupinstall "development-tools"
 sudo dnf install python3-devel
 
 sudo dnf install gtk3-devel webkit2gtk4.1-devel libjpeg-turbo-devel \
-libpng-devel libtiff-devel SDL2-devel gstreamer1-devel \
+libpng-devel libtiff-devel sdl2-compat-devel gstreamer1-devel \
 gstreamer1-plugins-base-devel libnotify-devel libSM-devel
 
-TODO check SDL2-devel doesn't exists anymore replaced by SDL2-compat?
+TODO check SDL2-devel doesn't exists anymore replaced by SDL2-compat-devel?
 
 sudo dnf install freeglut-devel expat-devel
 
