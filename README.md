@@ -74,18 +74,22 @@ Submodules are used, so after cloning don\'t forget to check them out:
 
 Check this [link](https://stackoverflow.com/questions/79671306/how-can-i-install-wxpython-on-fedora) installing wxPython 4 on Fedora.
 
-sudo dnf groupinstall "c-development"
+sudo dnf groupinstall "c-development" \
 sudo dnf groupinstall "development-tools"
+
 sudo dnf install python3-devel
 
 sudo dnf install gtk3-devel webkit2gtk4.1-devel libjpeg-turbo-devel \
 libpng-devel libtiff-devel SDL2-devel gstreamer1-devel \
 gstreamer1-plugins-base-devel libnotify-devel libSM-devel
 
+TODO check SDL2-devel doesn't exists anymore replaced by SDL2-compat?
+
 sudo dnf install freeglut-devel expat-devel
 
 then
-pip install -U pip setuptools wheel
+
+pip install -U pip setuptools wheel \
 pip install -U wxPython
 
 wxWidgets expects GTK 3. If gtk3-devel is missing, the build will fail.
