@@ -28,7 +28,6 @@ collections, webmasters, programmers, legal and clerical, etc.
 This is what you should run to start the program.
 """
 
-
 import sys
 import os
 import inspect
